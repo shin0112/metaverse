@@ -10,15 +10,21 @@ public class DungeonController : TopdownController
         _camera = Camera.main;
     }
 
-    protected override void Update()
+    protected override void HandleAction()
     {
-        base.Update();
-        Rotate(lookDirection);
-    }
+        base.HandleAction();
 
-    protected override void Rotate(Vector2 direction)
-    {
-        float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        bool isLeft = Mathf.Abs(rotZ) > 90f;
+        Vector2 mousePosition = Input.mousePosition;
+        Vector2 worldPos = _camera.ScreenToWorldPoint(mousePosition);
+        lookDirection = (worldPos - (Vector2)transform.position);
+
+        if (lookDirection.magnitude < .3f)
+        {
+            lookDirection = Vector2.zero;
+        }
+        else
+        {
+            lookDirection = lookDirection.normalized;
+        }
     }
 }
