@@ -25,4 +25,17 @@ public class DungeonController : TopdownController
             lookDirection = lookDirection.normalized;
         }
     }
+
+    protected override void Rotate()
+    {
+        float rotZ = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
+        bool isLeft = Mathf.Abs(rotZ) > 90f;
+
+        characterRenderer.flipX = isLeft;
+
+        if (weaponPivot != null)
+        {
+            weaponPivot.rotation = Quaternion.Euler(0, 0, rotZ);
+        }
+    }
 }

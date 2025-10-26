@@ -4,8 +4,8 @@ public class BaseController : MonoBehaviour
 {
     protected Rigidbody2D _rigidbody;
 
-    [SerializeField] private SpriteRenderer _spriteRenderer;
-    [SerializeField] private Transform _weaponPivot;
+    [SerializeField] protected SpriteRenderer characterRenderer;
+    [SerializeField] protected Transform weaponPivot;
 
     protected Vector2 movementDirection = Vector2.zero;
     public Vector2 MovementDirection => movementDirection;
@@ -26,6 +26,7 @@ public class BaseController : MonoBehaviour
     protected virtual void Update()
     {
         HandleAction();
+        Rotate();
     }
 
     protected virtual void FixedUpdate()
@@ -43,8 +44,7 @@ public class BaseController : MonoBehaviour
 
     }
 
-    protected virtual void Rotate(Vector2 direction)
+    protected virtual void Rotate()
     {
-
     }
 }

@@ -5,12 +5,6 @@ public class TopdownController : BaseController
     protected Vector2 knockback = Vector2.zero;
     private float _knockbackDuration = .0f;
 
-    protected override void Update()
-    {
-        base.Update();
-        Rotate(lookDirection);
-    }
-
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
@@ -35,10 +29,6 @@ public class TopdownController : BaseController
 
     protected virtual void GetRotateAction()
     {
-        if (movementDirection.y < 0)
-        {
-
-        }
     }
 
     protected override void Movement(Vector2 direction)
@@ -54,9 +44,9 @@ public class TopdownController : BaseController
         _rigidbody.velocity = direction;
     }
 
-    protected override void Rotate(Vector2 direction)
+    protected override void Rotate()
     {
-        float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        bool isLeft = Mathf.Abs(rotZ) > 90f;
+        bool isLeft = movementDirection.x < 0;
+        characterRenderer.flipX = isLeft;
     }
 }
