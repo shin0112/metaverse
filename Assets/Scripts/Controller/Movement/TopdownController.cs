@@ -22,9 +22,23 @@ public class TopdownController : BaseController
 
     protected override void HandleAction()
     {
+        GetMovementAction();
+        GetRotateAction();
+    }
+
+    protected virtual void GetMovementAction()
+    {
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
         movementDirection = new Vector2(horizontal, vertical).normalized;
+    }
+
+    protected virtual void GetRotateAction()
+    {
+        if (movementDirection.y < 0)
+        {
+
+        }
     }
 
     protected override void Movement(Vector2 direction)

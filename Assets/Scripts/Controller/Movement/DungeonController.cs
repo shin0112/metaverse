@@ -10,10 +10,8 @@ public class DungeonController : TopdownController
         _camera = Camera.main;
     }
 
-    protected override void HandleAction()
+    protected override void GetRotateAction()
     {
-        base.HandleAction();
-
         Vector2 mousePosition = Input.mousePosition;
         Vector2 worldPos = _camera.ScreenToWorldPoint(mousePosition);
         lookDirection = (worldPos - (Vector2)transform.position);
