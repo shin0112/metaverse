@@ -20,6 +20,11 @@ public class BaseController : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
     }
 
+    protected virtual void Start()
+    {
+
+    }
+
     protected virtual void Update()
     {
         HandleAction();

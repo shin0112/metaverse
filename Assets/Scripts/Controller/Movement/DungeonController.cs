@@ -1,9 +1,17 @@
 using UnityEngine;
 
-public class DungeonController : BaseController
+public class DungeonController : TopdownController
 {
+    private Camera _camera;
+
     protected Vector2 knockback = Vector2.zero;
     private float _knockbackDuration = .0f;
+
+    protected override void Start()
+    {
+        base.Start();
+        _camera = Camera.main;
+    }
 
     protected override void Update()
     {
