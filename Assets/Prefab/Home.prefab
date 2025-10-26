@@ -36196,7 +36196,7 @@ Transform:
   - {fileID: 2761807276646532639}
   - {fileID: 3962439417424084224}
   - {fileID: 648336471910058180}
-  - {fileID: 6288079168370941440}
+  - {fileID: 4969820886619920086}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &573188100729037005
@@ -36212,7 +36212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameType: 0
---- !u!1001 &4957555593326621510
+--- !u!1001 &6302543553646001040
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -36283,16 +36283,21 @@ PrefabInstance:
     - target: {fileID: 2188810640631791120, guid: bd2c36fb9ded6ec4c954a1c59abb195b,
         type: 3}
       propertyPath: m_Name
-      value: DungeonPortal
+      value: MiniGamePortal
+      objectReference: {fileID: 0}
+    - target: {fileID: 7970367615333022863, guid: bd2c36fb9ded6ec4c954a1c59abb195b,
+        type: 3}
+      propertyPath: gameType
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd2c36fb9ded6ec4c954a1c59abb195b, type: 3}
---- !u!4 &6288079168370941440 stripped
+--- !u!4 &4969820886619920086 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1409477405876383046, guid: bd2c36fb9ded6ec4c954a1c59abb195b,
     type: 3}
-  m_PrefabInstance: {fileID: 4957555593326621510}
+  m_PrefabInstance: {fileID: 6302543553646001040}
   m_PrefabAsset: {fileID: 0}

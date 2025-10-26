@@ -36,6 +36,17 @@ public class MiniGameManager : MonoBehaviour
         }
     }
 
+    public void SetEnterZone(bool active, int gameType)
+    {
+        _isInRange = active;
+        _currentType = gameType;
+
+        if (_pressE != null)
+        {
+            _pressE.SetActive(active && !_isPlaying);
+        }
+    }
+
     private void StartMiniGame(int type)
     {
         if (_isPlaying) return;

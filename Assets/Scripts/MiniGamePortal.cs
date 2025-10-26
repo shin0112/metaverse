@@ -11,8 +11,21 @@ public class MiniGamePortal : MonoBehaviour
         _miniGameManager = MiniGameManager.Instance;
     }
 
-    private void OnTrigggerEnter2D()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.CompareTag("Player"))
+        {
+            Debug.Log($"enter {gameType} protal");
+            _miniGameManager.SetEnterZone(true, gameType);
+        }
+    }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            Debug.Log($"exit {gameType} protal");
+            _miniGameManager.SetEnterZone(false, gameType);
+        }
     }
 }
