@@ -42,6 +42,7 @@ public class TopdownController : BaseController
         }
 
         _rigidbody.velocity = direction;
+        animationHandler.Move(direction);
     }
 
     protected override void Rotate()

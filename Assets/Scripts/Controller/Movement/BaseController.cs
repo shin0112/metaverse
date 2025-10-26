@@ -3,6 +3,7 @@ using UnityEngine;
 public class BaseController : MonoBehaviour
 {
     protected Rigidbody2D _rigidbody;
+    protected AnimationHandler animationHandler;
 
     [SerializeField] protected SpriteRenderer characterRenderer;
     [SerializeField] protected Transform weaponPivot;
@@ -16,6 +17,7 @@ public class BaseController : MonoBehaviour
     protected virtual void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+        animationHandler = GetComponent<AnimationHandler>();
     }
 
     protected virtual void Start()
