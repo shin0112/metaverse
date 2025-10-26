@@ -13,8 +13,6 @@ public class BaseController : MonoBehaviour
     protected Vector2 lookDirection = Vector2.zero;
     public Vector2 LoookDirection => lookDirection;
 
-
-
     protected virtual void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
