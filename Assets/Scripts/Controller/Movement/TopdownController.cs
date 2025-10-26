@@ -49,4 +49,10 @@ public class TopdownController : BaseController
         bool isLeft = movementDirection.x < 0;
         characterRenderer.flipX = isLeft;
     }
+
+    public void ApplyKnockback(Transform other, float power, float duration)
+    {
+        _knockbackDuration = duration;
+        knockback = -(other.position - transform.position).normalized * power;
+    }
 }
