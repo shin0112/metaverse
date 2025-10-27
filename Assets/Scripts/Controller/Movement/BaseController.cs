@@ -33,6 +33,11 @@ public class BaseController : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
+        if (_rigidbody.IsSleeping())
+        {
+            _rigidbody.WakeUp();
+        }
+
         Movement(movementDirection);
     }
 
@@ -54,5 +59,7 @@ public class BaseController : MonoBehaviour
     {
         _rigidbody.velocity = Vector2.zero;
         _rigidbody.gravityScale = 0f;
+        _rigidbody.WakeUp();
+        movementDirection = Vector2.zero;
     }
 }

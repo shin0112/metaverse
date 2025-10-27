@@ -32,7 +32,7 @@ public class GetFruitMiniGame : BaseMiniGame
     {
         base.Awake();
 
-        _playerController = GetComponent<TopdownController>();
+        _playerController = _player.GetComponent<TopdownController>();
         _droneController = GetComponentInChildren<ScrollController>();
         _controller = _droneController;
 
@@ -68,6 +68,7 @@ public class GetFruitMiniGame : BaseMiniGame
     private IEnumerator PlayEnterSequence()
     {
         // 플레이어 낙하
+        Debug.Log("플레이어 이동 금지");
         _playerController.enabled = false;
         var playerRb = _player.GetComponent<Rigidbody2D>();
         playerRb.gravityScale = 1f;

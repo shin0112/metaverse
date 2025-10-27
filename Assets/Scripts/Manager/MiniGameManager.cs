@@ -8,17 +8,13 @@ public class MiniGameManager : MonoBehaviour
     [SerializeField] private GameObject _player;
     [SerializeField] private GameObject _pressE;
 
-    [Header("MiniGame Prefabs")]
-    [SerializeField] private GameObject _getFruitGamePrefab;
-
-    [Header("Spawn Container")]
-
     private bool _isInRange = false;
     private bool _isPlaying = false;
     private int _currentType = 0;
     private GameObject _currentMiniGame;
 
     private FollowCameraController _followCameraController;
+    private EnvironmentManager _environmentManager;
 
     private void Awake()
     {
@@ -28,6 +24,7 @@ public class MiniGameManager : MonoBehaviour
 
     private void Start()
     {
+        _environmentManager = EnvironmentManager.Instance;
     }
 
     private void Update()
@@ -64,17 +61,21 @@ public class MiniGameManager : MonoBehaviour
         // 미니 게임 추가하기
         Debug.Log($"MiniGame {type} 시작");
 
+        switch (type)
+        {
+            case 1:
+                _environmentManager.EnterGetFruit();
+                break;
+            default:
+                _environmentManager.EnterHome();
+                break;
+        }
+
         GameObject prefab = type switch
         {
-            1 => _getFruitGamePrefab,
+            1 => Resources.Load<GameObject>("MiniGames/GetFruitMiniGame"),
             _ => null
         };
-
-        if (prefab == null)
-        {
-            Debug.LogWarning($"미니게임 {type} 없음");
-            return;
-        }
 
         _currentMiniGame = Instantiate(prefab);
         _currentMiniGame.GetComponent<BaseMiniGame>()?.Init();
@@ -86,10 +87,21 @@ public class MiniGameManager : MonoBehaviour
 
         if (_currentMiniGame != null)
         {
+            _currentMiniGame.GetComponent<BaseMiniGame>()?.SendMessage("OnExit");
+
             Destroy(_currentMiniGame);
         }
 
         _isPlaying = false;
+
+        _environmentManager.EnterHome();
+
+        var playerController = _player.GetComponent<TopdownController>();
+        if (playerController != null)
+        {
+            playerController.enabled = true;
+        }
+
         Debug.Log("MiniGame 종료");
     }
 }
