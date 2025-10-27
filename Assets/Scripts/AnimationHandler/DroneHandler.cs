@@ -1,12 +1,11 @@
 using System.Collections;
 using UnityEngine;
 
-public class DroneHandler : MonoBehaviour
+public class DroneHandler : AnimationHandler
 {
     private static readonly int IsDamage = Animator.StringToHash("IsDamage");
     private static readonly int IsDead = Animator.StringToHash("IsDead");
 
-    private Animator _animator;
 
     public void Awake()
     {
@@ -17,6 +16,16 @@ public class DroneHandler : MonoBehaviour
     {
         _animator.SetBool(IsDamage, true);
         StartCoroutine(TransitionToDead(1f)); // 1ÃÊ µÚ »ç¸Á
+    }
+
+    public override void Idle()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void Move(Vector2 obj)
+    {
+        throw new System.NotImplementedException();
     }
 
     private IEnumerator TransitionToDead(float delay)

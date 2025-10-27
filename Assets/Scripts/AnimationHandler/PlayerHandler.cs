@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerHandler : MonoBehaviour
+public class PlayerHandler : AnimationHandler
 {
     private static readonly int IsMoving = Animator.StringToHash("IsMoving");
     private static readonly int IsDamage = Animator.StringToHash("IsDamage");
@@ -12,13 +12,13 @@ public class PlayerHandler : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
     }
 
-    public void Idle()
+    public override void Idle()
     {
         animator.SetBool(IsMoving, false);
         animator.SetBool(IsDamage, false);
     }
 
-    public void Move(Vector2 obj)
+    public override void Move(Vector2 obj)
     {
         animator.SetBool(IsMoving, obj.magnitude > .5f);
     }
