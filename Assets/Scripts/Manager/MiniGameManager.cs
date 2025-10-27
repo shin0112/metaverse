@@ -67,22 +67,13 @@ public class MiniGameManager : MonoBehaviour
         switch (type)
         {
             case 1:
-                _environmentManager.EnterGetFruit();
+                _currentMiniGame = _environmentManager.EnterGetFruit();
                 break;
             default:
                 _environmentManager.EnterHome();
                 break;
         }
 
-        GameObject prefab = type switch
-        {
-            1 => _getFruitPrefab,
-            _ => null
-        };
-
-        if (prefab == null) return;
-
-        _currentMiniGame = Instantiate(prefab);
         _currentMiniGame.GetComponent<BaseMiniGame>()?.Init();
     }
 

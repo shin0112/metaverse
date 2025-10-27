@@ -10,6 +10,7 @@ public class EnvironmentManager : MonoBehaviour
     [SerializeField] private GameObject _getFruit;
 
     private GameObject _current;
+    private GameObject _currentMiniGameInstancce;
 
     private void Awake()
     {
@@ -32,6 +33,22 @@ public class EnvironmentManager : MonoBehaviour
         _current = bg;
     }
 
-    public void EnterHome() => SetEnvironment(_home);
-    public void EnterGetFruit() => SetEnvironment(_getFruit);
+    public void EnterHome()
+    {
+        if (_currentMiniGameInstancce != null)
+        {
+            Destroy(_currentMiniGameInstancce);
+            _currentMiniGameInstancce = null;
+        }
+
+        SetEnvironment(_home);
+    }
+
+    public GameObject EnterGetFruit()
+    {
+        SetEnvironment(_getFruit);
+
+        _currentMiniGameInstancce = Instantiate(_getFruit, transform);
+        return _currentMiniGameInstancce;
+    }
 }
