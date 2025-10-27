@@ -20,7 +20,8 @@ public class DroneHandler : AnimationHandler
 
     public override void Idle()
     {
-        throw new System.NotImplementedException();
+        _animator.SetBool(IsDamage, false);
+        _animator.SetBool(IsDead, false);
     }
 
     public override void Move(Vector2 obj)
