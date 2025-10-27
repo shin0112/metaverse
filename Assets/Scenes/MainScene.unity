@@ -42639,6 +42639,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 696d6ae0c7b43724f8b0434153d17d50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterRenderer: {fileID: 2719303177458467670}
+  weaponPivot: {fileID: 0}
+  _target: {fileID: 564867283}
+  _followSpeed: 5
+  _stopDistance: 1.5
 --- !u!1 &5906146699148025141
 GameObject:
   m_ObjectHideFlags: 0
