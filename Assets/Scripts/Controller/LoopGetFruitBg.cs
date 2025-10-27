@@ -8,6 +8,10 @@ public class LoopGetFruitBg : MonoBehaviour
     [SerializeField] private GameObject _middleLayerPrefab;
     [SerializeField] private GameObject _groundLayerPrefab;
 
+    [Header("Obstacles")]
+    [SerializeField] private int _obstacleCount = 0;
+    protected Vector3 obstacleLastPosition = Vector3.zero;
+
     [Header("Settings")]
     [SerializeField] private float _scrollSpeed = 5f;   // 이동 속도 (모든 레이어 동일)
     [SerializeField]
@@ -26,6 +30,15 @@ public class LoopGetFruitBg : MonoBehaviour
     {
         _mainCam = Camera.main;
         _screenLeft = _mainCam.transform.position.x - 15f;
+
+        Obstacle[] obstacles = GameObject.FindObjectsOfType<Obstacle>();
+        obstacleLastPosition = obstacles[0].transform.position;
+        _obstacleCount = obstacles.Length;
+
+        foreach (var obstacle in obstacles)
+        {
+            obstacleLastPosition = obstacle.SetRandomPlace(obstacleLastPosition, _obstacleCount);
+        }
     }
 
     private void Update()
@@ -46,6 +59,14 @@ public class LoopGetFruitBg : MonoBehaviour
         else if (collision.CompareTag("Ground"))
         {
             widthOfBgObject = ((CompositeCollider2D)collision).bounds.size.x * 0.998f;
+        }
+        else
+        {
+            Obstacle obstacle = collision.GetComponent<Obstacle>();
+            if (obstacle)
+            {
+                obstacleLastPosition = obstacle.SetRandomPlace(obstacleLastPosition, _obstacleCount);
+            }
         }
 
         Vector3 pos = collision.transform.position;
