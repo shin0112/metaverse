@@ -304,6 +304,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 564867282}
+  _drone: {fileID: 5167162640669893013}
   _pressE: {fileID: 321948494}
 --- !u!4 &568469345
 Transform:

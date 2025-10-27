@@ -35,8 +35,9 @@ public class FollowCameraController : MonoBehaviour
         transform.position = pos;
     }
 
-    public void OnEnterDroneMode()
+    public void OnEnterGetFruitMode(Transform transform)
     {
-
+        target = transform;
+        _lockY = true;
     }
 }

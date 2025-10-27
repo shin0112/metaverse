@@ -6,6 +6,7 @@ public class MiniGameManager : MonoBehaviour
     public static MiniGameManager Instance => _instance;
 
     [SerializeField] private GameObject _player;
+    [SerializeField] private GameObject _drone;
     [SerializeField] private GameObject _pressE;
 
     private bool _isInRange = false;
@@ -28,6 +29,7 @@ public class MiniGameManager : MonoBehaviour
     private void Start()
     {
         _environmentManager = EnvironmentManager.Instance;
+        _followCameraController = FindObjectOfType<FollowCameraController>();
     }
 
     private void Update()
@@ -69,6 +71,7 @@ public class MiniGameManager : MonoBehaviour
             case 1:
                 _currentMiniGame = _environmentManager.EnterGetFruit();
                 _getFruitMiniGame?.Init();
+                _followCameraController.OnEnterGetFruitMode(_drone.transform);
                 break;
             default:
                 _environmentManager.EnterHome();
