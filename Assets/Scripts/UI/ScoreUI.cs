@@ -13,4 +13,9 @@ public class ScoreUI : BaseUI
     {
         return UIState.Score;
     }
+
+    public void UpdateScore(int totalScore)
+    {
+        TotalScore.text = totalScore.ToString();
+    }
 }

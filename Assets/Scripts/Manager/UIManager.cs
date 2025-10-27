@@ -17,6 +17,7 @@ public class UIManager : MonoBehaviour
     ScoreUI _scoreUI = null;
 
     GetFruitMiniGame _getFruitMiniGame = null;
+    ScoreManager _scoreManager = null;
 
     private void Awake()
     {
@@ -28,6 +29,11 @@ public class UIManager : MonoBehaviour
         _getFruitMiniGame = FindObjectOfType<GetFruitMiniGame>(true);
 
         ChangeState(UIState.Home);
+    }
+
+    private void Start()
+    {
+        _scoreManager = ScoreManager.Instance;
     }
 
     public void ChangeState(UIState state)
@@ -52,6 +58,7 @@ public class UIManager : MonoBehaviour
 
     public void UpdateScore()
     {
-        _getFruitUI.SetUI(ScoreManager.Instance.FruitScore);
+        _getFruitUI.SetUI(_scoreManager.FruitScore);
+        _scoreUI.UpdateScore(_scoreManager.TotalScore);
     }
 }
