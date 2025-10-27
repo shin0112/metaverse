@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class LoopGetFruitBg : MonoBehaviour
@@ -9,7 +10,13 @@ public class LoopGetFruitBg : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] private float _scrollSpeed = 5f;   // 이동 속도 (모든 레이어 동일)
-    [SerializeField] private int _numBgCount = 4;        // 각 레이어 생성 개수
+    [SerializeField]
+    private Dictionary<string, int> _bgCounts = new()
+    {
+        { "Background", 8 },
+        { "Middle", 4 },
+        { "Ground", 4 }
+    };
     [SerializeField] private float _spawnOffsetY = 0f;  // 레이어별 높이 보정값
 
     private Camera _mainCam;
@@ -32,10 +39,9 @@ public class LoopGetFruitBg : MonoBehaviour
         Debug.Log("Triggered: " + collision.name);
         float widthOfBgObject = 0f;
 
-        if (collision.CompareTag("Background"))
+        if (collision.CompareTag("Background") || collision.CompareTag("Middle"))
         {
             widthOfBgObject = ((BoxCollider2D)collision).size.x;
-
         }
         else if (collision.CompareTag("Ground"))
         {
@@ -43,8 +49,8 @@ public class LoopGetFruitBg : MonoBehaviour
         }
 
         Vector3 pos = collision.transform.position;
+        pos.x += widthOfBgObject * _bgCounts[collision.tag];
 
-        pos.x += widthOfBgObject * _numBgCount;
         collision.transform.position = pos;
         return;
     }
