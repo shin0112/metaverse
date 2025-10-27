@@ -346,6 +346,34 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1848638789}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &637987228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637987222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bfd2de6cd1eeae4faa929ca062913de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterRenderer: {fileID: 1826530182}
+  weaponPivot: {fileID: 0}
+--- !u!114 &637987229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637987222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14f1632313be89b4e8c59b9dd063fdd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scrollController: {fileID: 0}
+  _topdownController: {fileID: 0}
 --- !u!1 &1067515466
 GameObject:
   m_ObjectHideFlags: 0
@@ -791,6 +819,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &1826530182 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 2719303179038572051, guid: 0d0c7c5bbd091c845911486d78436198,
+    type: 3}
+  m_PrefabInstance: {fileID: 1848638789}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1848638789
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -857,7 +891,15 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5167162638893030608, guid: 0d0c7c5bbd091c845911486d78436198,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 637987228}
+    - targetCorrespondingSourceObject: {fileID: 5167162638893030608, guid: 0d0c7c5bbd091c845911486d78436198,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 637987229}
   m_SourcePrefab: {fileID: 100100000, guid: 0d0c7c5bbd091c845911486d78436198, type: 3}
 --- !u!1 &1883225632
 GameObject:
