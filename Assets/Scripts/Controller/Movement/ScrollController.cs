@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ScrollController : BaseController
 {
-    [SerializeField] private float _flapPower = 5f;
+    [SerializeField] private float _flapPower = 6f;
     [SerializeField] private float _forwardSpeed = 3f;
 
     private DroneHandler _animator;
@@ -75,8 +75,10 @@ public class ScrollController : BaseController
             Vector2 velocity = _rigidbody.velocity;
             velocity.y += _flapPower;
             _isFlap = false;
+            _rigidbody.velocity = new Vector2(
+                _forwardSpeed,
+                velocity.y);
         }
-
     }
 
     protected override void Rotate()

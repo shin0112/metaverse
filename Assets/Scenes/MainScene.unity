@@ -339,7 +339,7 @@ MonoBehaviour:
   _camera: {fileID: 4708713044758797675, guid: 9b6dd081a6dd2ac4dbd37a4ff9a3547b, type: 3}
   _cameraTargetSize: 5
   _cameraShiftX: 2
-  _flapPower: 5
+  _flapPower: 6
 --- !u!114 &637987229
 MonoBehaviour:
   m_ObjectHideFlags: 0
