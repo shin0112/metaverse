@@ -11,7 +11,6 @@ public class ScrollController : BaseController
     public bool IsDead => _isDead;
     public event Action? OnDroneDeath;
 
-
     private DroneMovementMode _droneMovementMode;
 
     protected override void Awake()
@@ -33,21 +32,31 @@ public class ScrollController : BaseController
         _rigidbody.gravityScale = 1f;
     }
 
+    protected override void FixedUpdate()
+    {
+        if (_isDead) return;
+
+        if (_rigidbody.gravityScale > 0f)
+        {
+            _rigidbody.velocity = new Vector2(
+                _forwardSpeed,
+                _rigidbody.velocity.y);
+
+            Rotate();
+        }
+    }
+
     public void Flap(ref bool _isFlap)
     {
-        Debug.Log("Flag 시작");
-
-        Vector3 velocity = _rigidbody.velocity;
-        velocity.x = _forwardSpeed;
-
         if (_isFlap)
         {
+            Debug.Log("Flag 수행");
+
+            Vector2 velocity = _rigidbody.velocity;
             velocity.y += _flapPower;
             _isFlap = false;
         }
 
-        _rigidbody.velocity = velocity;
-        Rotate();
     }
 
     protected override void Rotate()

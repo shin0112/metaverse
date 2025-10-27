@@ -19,8 +19,8 @@ public class GetFruitMiniGame : BaseMiniGame
     private ScrollController _droneController;
     private DroneMovementMode _droneMovementMode;
 
-    private float _deathCooldown = 0f;
     private bool _isFlap = false;
+    private float _deathCooldown = 0f;
 
     public override void Init()
     {
@@ -66,10 +66,6 @@ public class GetFruitMiniGame : BaseMiniGame
     protected override void OnExit()
     {
         _droneMovementMode.SetDefaultMode();
-    }
-
-    protected override void OnPlaying()
-    {
     }
 
     protected override void OnReady()
@@ -138,17 +134,15 @@ public class GetFruitMiniGame : BaseMiniGame
         _droneController.Flap(ref _isFlap);
     }
 
-    protected override void Update()
+    protected override void OnPlaying()
     {
-        if (_droneController == null || !_isReady) return;
-
         if (_droneController.IsDead)
         {
             if (_deathCooldown <= 0)
             {
                 if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
                 {
-                    // 재시작
+                    // 게임 재시작
                 }
             }
             else
@@ -161,7 +155,6 @@ public class GetFruitMiniGame : BaseMiniGame
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
             {
                 _isFlap = true;
-                Debug.Log("IsFlap is true");
             }
         }
     }
@@ -171,6 +164,9 @@ public class GetFruitMiniGame : BaseMiniGame
         if (_droneController == null || !_isStart) return;
         if (_droneController.IsDead) return;
 
-        _droneController.Flap(ref _isFlap);
+        if (_isFlap)
+        {
+            _droneController.Flap(ref _isFlap);
+        }
     }
 }
