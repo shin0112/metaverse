@@ -35,6 +35,8 @@ public class ScrollController : BaseController
 
     public void Flap(ref bool _isFlap)
     {
+        Debug.Log("Flag Ω√¿€");
+
         Vector3 velocity = _rigidbody.velocity;
         velocity.x = _forwardSpeed;
 
