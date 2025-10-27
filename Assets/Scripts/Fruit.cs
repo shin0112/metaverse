@@ -5,9 +5,12 @@ public class Fruit : MonoBehaviour
     private SpriteRenderer _renderer;
     private bool _collected = false;
 
+    private ScoreManager _scoreManager;
+
     private void Awake()
     {
         _renderer = GetComponent<SpriteRenderer>();
+        _scoreManager = ScoreManager.Instance;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -18,7 +21,7 @@ public class Fruit : MonoBehaviour
         {
             _collected = true;
 
-            // 점수 추가하기
+            _scoreManager.AddScore(1);
 
             SetAlpha(0f);
         }
