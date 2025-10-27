@@ -5,27 +5,42 @@ public class GetFruitMiniGame : BaseMiniGame
 {
     [Header("References")]
     [SerializeField] private GameObject _player;
-    [SerializeField] private ScrollController _scrollController;
+    [SerializeField] private ScrollController _droneController;
     [SerializeField] private Camera _camera;
 
     [Header("Settings")]
     [SerializeField] private float _cameraTargetSize = 5f;
     [SerializeField] private float _cameraShiftX = 2f;
+    [SerializeField] private float _flapPower = 5f;
 
     private Vector3 _originalCamPos;
     private float _originalCamSize;
+    private TopdownController _playerController;
+
+    public override void Init()
+    {
+        base.Init();
+
+        if (_camera != null)
+        {
+            _camera.orthographicSize = _originalCamSize;
+            _camera.transform.position = _originalCamPos;
+        }
+    }
 
     protected override void Awake()
     {
         base.Awake();
 
-        _scrollController = GetComponentInChildren<ScrollController>();
-        _controller = _scrollController;
+        _playerController = GetComponent<TopdownController>();
+        _droneController = GetComponentInChildren<ScrollController>();
+        _controller = _droneController;
 
         if (_camera == null)
         {
             _camera = Camera.main;
         }
+
         _originalCamPos = _camera.transform.position;
         _originalCamSize = _camera.orthographicSize;
     }
@@ -37,7 +52,10 @@ public class GetFruitMiniGame : BaseMiniGame
 
     protected override void OnPlaying()
     {
-        throw new System.NotImplementedException();
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
+        {
+            _droneController.Flap(_flapPower);
+        }
     }
 
     protected override void OnReady()
@@ -50,20 +68,24 @@ public class GetFruitMiniGame : BaseMiniGame
     private IEnumerator PlayEnterSequence()
     {
         // 플레이어 낙하
+        _playerController.enabled = false;
         var playerRb = _player.GetComponent<Rigidbody2D>();
         playerRb.gravityScale = 1f;
         playerRb.velocity = Vector2.zero;
 
         // 드론 
 
+
         // 카메라 줌인 & 오른쪽 이동
-        yield return StartCoroutine(CameraZoonAndShift());
+        yield return StartCoroutine(CameraZoomAndShift());
 
         // 대기
         _isReady = true;
+
+        Debug.Log("준비 완료");
     }
 
-    private IEnumerable CameraZoonAndShift()
+    private IEnumerator CameraZoomAndShift()
     {
         float duration = 1f;
         float t = 0f;
@@ -82,7 +104,8 @@ public class GetFruitMiniGame : BaseMiniGame
 
     protected override void OnStart()
     {
-        throw new System.NotImplementedException();
+        Debug.Log("GetFruitMiniGame start");
+        _droneController.Flap(_flapPower);
     }
 
     protected override void StartGame()
