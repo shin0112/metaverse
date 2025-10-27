@@ -15,10 +15,12 @@ public class MiniGameManager : MonoBehaviour
 
     private FollowCameraController _followCameraController;
     private EnvironmentManager _environmentManager;
+    private GetFruitMiniGame _getFruitMiniGame;
 
     private void Awake()
     {
         _instance = this;
+        _getFruitMiniGame = GetComponent<GetFruitMiniGame>();
         if (_pressE != null) _pressE.SetActive(false);
     }
 
@@ -65,13 +67,12 @@ public class MiniGameManager : MonoBehaviour
         {
             case 1:
                 _currentMiniGame = _environmentManager.EnterGetFruit();
+                _getFruitMiniGame?.Init();
                 break;
             default:
                 _environmentManager.EnterHome();
                 break;
         }
-
-        _currentMiniGame.GetComponent<BaseMiniGame>()?.Init();
     }
 
     private void EndMiniGame()
