@@ -3,7 +3,7 @@ using UnityEngine;
 public class BaseController : MonoBehaviour
 {
     protected Rigidbody2D _rigidbody;
-    protected AnimationHandler animationHandler;
+    protected PlayerHandler animationHandler;
 
     [SerializeField] protected SpriteRenderer characterRenderer;
     [SerializeField] protected Transform weaponPivot;
@@ -17,7 +17,7 @@ public class BaseController : MonoBehaviour
     protected virtual void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
-        animationHandler = GetComponent<AnimationHandler>();
+        animationHandler = GetComponent<PlayerHandler>();
     }
 
     protected virtual void Start()
@@ -48,5 +48,11 @@ public class BaseController : MonoBehaviour
 
     protected virtual void Rotate()
     {
+    }
+
+    protected virtual void Ready()
+    {
+        _rigidbody.velocity = Vector2.zero;
+        _rigidbody.gravityScale = 0f;
     }
 }
