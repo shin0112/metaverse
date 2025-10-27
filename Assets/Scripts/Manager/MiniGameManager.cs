@@ -8,6 +8,9 @@ public class MiniGameManager : MonoBehaviour
     [SerializeField] private GameObject _player;
     [SerializeField] private GameObject _pressE;
 
+    [Header("MiniGame Prefabs")]
+    [SerializeField] private GameObject _getFruitPrefab;
+
     private bool _isInRange = false;
     private bool _isPlaying = false;
     private int _currentType = 0;
@@ -73,9 +76,11 @@ public class MiniGameManager : MonoBehaviour
 
         GameObject prefab = type switch
         {
-            1 => Resources.Load<GameObject>("MiniGames/GetFruitMiniGame"),
+            1 => _getFruitPrefab,
             _ => null
         };
+
+        if (prefab == null) return;
 
         _currentMiniGame = Instantiate(prefab);
         _currentMiniGame.GetComponent<BaseMiniGame>()?.Init();
