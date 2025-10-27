@@ -47,7 +47,7 @@ public class ScrollController : BaseController
         }
     }
 
-    public void GetGravity()
+    public void EnableGravity()
     {
         _rigidbody.gravityScale = 1f;
     }

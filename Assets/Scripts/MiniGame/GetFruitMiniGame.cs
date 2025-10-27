@@ -139,7 +139,7 @@ public class GetFruitMiniGame : BaseMiniGame
         Debug.Log("GetFruitMiniGame start");
         _isFlap = true;
         _isStart = true;
-        _droneController.GetGravity(); // 중력
+        _droneController.EnableGravity(); // 중력
         _droneController.Flap(ref _isFlap);
     }
 
