@@ -1,4 +1,4 @@
-public class GetFruitUI : BaseUI
+public class ScoreUI : BaseUI
 {
     public override void Init(UIManager uiManager)
     {
@@ -7,6 +7,6 @@ public class GetFruitUI : BaseUI
 
     protected override UIState GetUIState()
     {
-        return UIState.GetFruit;
+        return UIState.Score;
     }
 }

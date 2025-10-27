@@ -4,6 +4,7 @@ public enum UIState
 {
     Home,
     GetFruit,
+    Score
 }
 
 public class UIManager : MonoBehaviour
