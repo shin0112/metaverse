@@ -30,8 +30,11 @@ public class LoopGetFruitBg : MonoBehaviour
     {
         _mainCam = Camera.main;
         _screenLeft = _mainCam.transform.position.x - 15f;
+    }
 
-        Obstacle[] obstacles = GameObject.FindObjectsOfType<Obstacle>();
+    private void OnEnable()
+    {
+        Obstacle[] obstacles = GameObject.FindObjectsOfType<Obstacle>(true);
         obstacleLastPosition = obstacles[0].transform.position;
         _obstacleCount = obstacles.Length;
 
@@ -67,6 +70,7 @@ public class LoopGetFruitBg : MonoBehaviour
             {
                 obstacleLastPosition = obstacle.SetRandomPlace(obstacleLastPosition, _obstacleCount);
             }
+            return;
         }
 
         Vector3 pos = collision.transform.position;

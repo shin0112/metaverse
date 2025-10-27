@@ -52,6 +52,7 @@ MonoBehaviour:
     type: 3}
   _groundLayerPrefab: {fileID: 9154958064730898153, guid: b032429f1f2aa194aa023f79a9a5c420,
     type: 3}
+  _obstacleCount: 0
   _scrollSpeed: 5
   _spawnOffsetY: 0
 --- !u!50 &5853571170254187789
@@ -154,7 +155,7 @@ Transform:
   m_GameObject: {fileID: 5603185650469152527}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 72.012566, y: 0, z: -10}
+  m_LocalPosition: {x: 84.012566, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

@@ -27872,17 +27872,7 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths:
-  - m_Collider: {fileID: 399644335591184960}
-    m_ColliderPaths:
-    - - X: 90333336
-        Y: -42295380
-      - X: -170333328
-        Y: -42295380
-      - X: -170333328
-        Y: -96260880
-      - X: 90333336
-        Y: -96260880
+  m_ColliderPaths: []
   m_CompositePaths:
     m_Paths:
     - - {x: 9.033304, y: -9.626088}
@@ -40603,17 +40593,7 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths:
-  - m_Collider: {fileID: 2149277781511417096}
-    m_ColliderPaths:
-    - - X: 90333336
-        Y: -42295380
-      - X: -170333328
-        Y: -42295380
-      - X: -170333328
-        Y: -96260880
-      - X: 90333336
-        Y: -96260880
+  m_ColliderPaths: []
   m_CompositePaths:
     m_Paths:
     - - {x: 9.033304, y: -9.626088}
@@ -41420,17 +41400,7 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths:
-  - m_Collider: {fileID: 4742590520661380463}
-    m_ColliderPaths:
-    - - X: 90333336
-        Y: -42295380
-      - X: -170333328
-        Y: -42295380
-      - X: -170333328
-        Y: -96260880
-      - X: 90333336
-        Y: -96260880
+  m_ColliderPaths: []
   m_CompositePaths:
     m_Paths:
     - - {x: 9.033304, y: -9.626088}
@@ -45123,17 +45093,7 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths:
-  - m_Collider: {fileID: 6995551185042330327}
-    m_ColliderPaths:
-    - - X: 90333336
-        Y: -42295380
-      - X: -170333328
-        Y: -42295380
-      - X: -170333328
-        Y: -96260880
-      - X: 90333336
-        Y: -96260880
+  m_ColliderPaths: []
   m_CompositePaths:
     m_Paths:
     - - {x: 9.033304, y: -9.626088}
@@ -45393,7 +45353,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!19719996 &6995551185042330327
 TilemapCollider2D:
   m_ObjectHideFlags: 0
