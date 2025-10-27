@@ -16,5 +16,6 @@ public class ScoreManager : MonoBehaviour
     public void AddScore(int amount)
     {
         _fruitScore += amount;
+        Debug.Log($"현재 점수: {_fruitScore}");
     }
 }
