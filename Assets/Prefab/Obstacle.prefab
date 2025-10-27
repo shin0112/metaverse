@@ -263,6 +263,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2118532867900440033}
   - component: {fileID: 2671044915630281668}
+  - component: {fileID: 6668320835314302893}
   - component: {fileID: 7655740648381695674}
   m_Layer: 0
   m_Name: Fruit
@@ -338,6 +339,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6668320835314302893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6029918514535744466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64057a082c8d05a4280edd34ab7b411c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!61 &7655740648381695674
 BoxCollider2D:
   m_ObjectHideFlags: 0
