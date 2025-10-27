@@ -17,10 +17,16 @@ public class MiniGameManager : MonoBehaviour
     private int _currentType = 0;
     private GameObject _currentMiniGame;
 
+    private FollowCameraController _followCameraController;
+
     private void Awake()
     {
         _instance = this;
         if (_pressE != null) _pressE.SetActive(false);
+    }
+
+    private void Start()
+    {
     }
 
     private void Update()
