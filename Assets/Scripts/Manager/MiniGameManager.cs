@@ -5,12 +5,13 @@ public class MiniGameManager : MonoBehaviour
     private static MiniGameManager _instance;
     public static MiniGameManager Instance => _instance;
 
+    [SerializeField] private GameObject _player;
+    [SerializeField] private GameObject _pressE;
+
     [Header("MiniGame Prefabs")]
+    [SerializeField] private GameObject _getFruitGamePrefab;
 
     [Header("Spawn Container")]
-
-    [Header("UI")]
-    [SerializeField] private GameObject _pressE;
 
     private bool _isInRange = false;
     private bool _isPlaying = false;
@@ -62,6 +63,21 @@ public class MiniGameManager : MonoBehaviour
 
         // 미니 게임 추가하기
         Debug.Log($"MiniGame {type} 시작");
+
+        GameObject prefab = type switch
+        {
+            1 => _getFruitGamePrefab,
+            _ => null
+        };
+
+        if (prefab == null)
+        {
+            Debug.LogWarning($"미니게임 {type} 없음");
+            return;
+        }
+
+        _currentMiniGame = Instantiate(prefab);
+        _currentMiniGame.GetComponent<BaseMiniGame>()?.Init();
     }
 
     private void EndMiniGame()
