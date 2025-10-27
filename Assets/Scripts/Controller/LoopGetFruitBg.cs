@@ -1,0 +1,51 @@
+using UnityEngine;
+
+public class LoopGetFruitBg : MonoBehaviour
+{
+    [Header("Layers")]
+    [SerializeField] private GameObject _backLayerPrefab;
+    [SerializeField] private GameObject _middleLayerPrefab;
+    [SerializeField] private GameObject _groundLayerPrefab;
+
+    [Header("Settings")]
+    [SerializeField] private float _scrollSpeed = 5f;   // 이동 속도 (모든 레이어 동일)
+    [SerializeField] private int _numBgCount = 4;        // 각 레이어 생성 개수
+    [SerializeField] private float _spawnOffsetY = 0f;  // 레이어별 높이 보정값
+
+    private Camera _mainCam;
+    private float _screenLeft;
+
+    private void Start()
+    {
+        _mainCam = Camera.main;
+        _screenLeft = _mainCam.transform.position.x - 15f;
+    }
+
+    private void Update()
+    {
+        if (_mainCam == null) return;
+
+    }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("Triggered: " + collision.name);
+        float widthOfBgObject = 0f;
+
+        if (collision.CompareTag("Background"))
+        {
+            widthOfBgObject = ((BoxCollider2D)collision).size.x;
+
+        }
+        else if (collision.CompareTag("Ground"))
+        {
+            widthOfBgObject = ((CompositeCollider2D)collision).bounds.size.x;
+        }
+
+        Vector3 pos = collision.transform.position;
+
+        pos.x += widthOfBgObject * _numBgCount;
+        collision.transform.position = pos;
+        return;
+    }
+}
