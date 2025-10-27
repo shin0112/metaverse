@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class BackGroundManager : MonoBehaviour
+public class EnvironmentManager : MonoBehaviour
 {
-    private static BackGroundManager _instance;
-    public static BackGroundManager Instance => _instance;
+    private static EnvironmentManager _instance;
+    public static EnvironmentManager Instance => _instance;
 
     [Header("Background References")]
     [SerializeField] private GameObject _home;
@@ -20,7 +20,7 @@ public class BackGroundManager : MonoBehaviour
         EnterHome();
     }
 
-    public void SetBackground(GameObject bg)
+    public void SetEnvironment(GameObject bg)
     {
         if (_current != null)
         {
@@ -31,5 +31,5 @@ public class BackGroundManager : MonoBehaviour
         _current = bg;
     }
 
-    public void EnterHome() => SetBackground(_home);
+    public void EnterHome() => SetEnvironment(_home);
 }
