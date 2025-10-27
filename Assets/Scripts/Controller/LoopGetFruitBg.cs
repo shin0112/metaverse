@@ -41,11 +41,11 @@ public class LoopGetFruitBg : MonoBehaviour
 
         if (collision.CompareTag("Background") || collision.CompareTag("Middle"))
         {
-            widthOfBgObject = ((BoxCollider2D)collision).size.x;
+            widthOfBgObject = ((BoxCollider2D)collision).size.x * 0.998f;
         }
         else if (collision.CompareTag("Ground"))
         {
-            widthOfBgObject = ((CompositeCollider2D)collision).bounds.size.x;
+            widthOfBgObject = ((CompositeCollider2D)collision).bounds.size.x * 0.998f;
         }
 
         Vector3 pos = collision.transform.position;
