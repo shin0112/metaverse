@@ -340,20 +340,6 @@ MonoBehaviour:
   _cameraTargetSize: 5
   _cameraShiftX: 2
   _flapPower: 5
---- !u!114 &637987228
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5167162640669893013}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0bfd2de6cd1eeae4faa929ca062913de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterRenderer: {fileID: 2719303177458467670}
-  weaponPivot: {fileID: 0}
 --- !u!114 &637987229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42515,8 +42501,8 @@ GameObject:
   - component: {fileID: 5532758056349587754}
   - component: {fileID: 2951781081738126361}
   - component: {fileID: 5701625415792689033}
-  - component: {fileID: 637987228}
   - component: {fileID: 637987229}
+  - component: {fileID: 5701625415792689034}
   m_Layer: 0
   m_Name: Drone
   m_TagString: Untagged
@@ -42639,6 +42625,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 34202e45c88d43f479994b8aaef061e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5701625415792689034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5167162640669893013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 696d6ae0c7b43724f8b0434153d17d50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5906146699148025141
