@@ -30,6 +30,11 @@ public abstract class BaseMiniGame : MonoBehaviour
             OnPlaying();
     }
 
+    protected virtual void FixedUpdate()
+    {
+
+    }
+
     protected virtual bool CheckStartInput()
     {
         // space or 마우스 좌클릭

@@ -19,6 +19,10 @@ public class GetFruitMiniGame : BaseMiniGame
     private ScrollController _droneController;
     private DroneMovementMode _droneMovementMode;
 
+    private Rigidbody2D _rigidbody = null;
+    private float _deathCooldown = 0f;
+    private bool _isFlap = false;
+
     public override void Init()
     {
         base.Init();
@@ -42,6 +46,7 @@ public class GetFruitMiniGame : BaseMiniGame
         _droneController = GetComponentInChildren<ScrollController>();
         _controller = _droneController;
         _droneMovementMode = _drone.GetComponent<DroneMovementMode>();
+        _rigidbody = _drone.GetComponent<Rigidbody2D>();
 
         if (_camera == null)
         {
@@ -50,6 +55,12 @@ public class GetFruitMiniGame : BaseMiniGame
 
         _originalCamPos = _camera.transform.position;
         _originalCamSize = _camera.orthographicSize;
+
+        _droneController.OnDroneDeath += () =>
+        {
+            _deathCooldown = 1f;
+            Debug.Log("드론 파괴");
+        };
     }
 
     protected override void OnExit()
@@ -61,7 +72,7 @@ public class GetFruitMiniGame : BaseMiniGame
     {
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
         {
-            _droneController.Flap(_flapPower);
+            _droneController.Flap(ref _isFlap);
         }
     }
 
@@ -127,16 +138,39 @@ public class GetFruitMiniGame : BaseMiniGame
     protected override void OnStart()
     {
         Debug.Log("GetFruitMiniGame start");
-        _droneController.Flap(_flapPower);
-    }
-
-    protected override void StartGame()
-    {
-        base.StartGame();
+        _isFlap = true;
+        _isStart = true;
+        _droneController.GetGravity(); // 중력
+        _droneController.Flap(ref _isFlap);
     }
 
     protected override void Update()
     {
-        base.Update();
+        if (_droneController.IsDead)
+        {
+            if (_deathCooldown <= 0)
+            {
+                if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
+                {
+                }
+            }
+            else
+            {
+                _deathCooldown -= Time.deltaTime;
+            }
+        }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
+            {
+                _isFlap = true;
+            }
+        }
+    }
+
+    protected override void FixedUpdate()
+    {
+        if (_droneController.IsDead) return;
+        OnPlaying();
     }
 }

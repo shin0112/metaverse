@@ -1,11 +1,16 @@
+using System;
 using UnityEngine;
 
 public class ScrollController : BaseController
 {
     [SerializeField] private float _flapPower = 5f;
+    [SerializeField] private float _forwardSpeed = 3f;
 
     private DroneHandler _animator;
     private bool _isDead;
+    public bool IsDead => _isDead;
+    public event Action? OnDroneDeath;
+
 
     private DroneMovementMode _droneMovementMode;
 
@@ -19,14 +24,28 @@ public class ScrollController : BaseController
     protected override void Start()
     {
         base.Start();
-        _rigidbody.gravityScale = 1f;
         _rigidbody.freezeRotation = false;
         _isDead = false;
     }
 
-    public void Flap(float power)
+    public void GetGravity()
     {
-        _rigidbody.velocity = Vector2.up * power;
+        _rigidbody.gravityScale = 1f;
+    }
+
+    public void Flap(ref bool _isFlap)
+    {
+        Vector3 velocity = _rigidbody.velocity;
+        velocity.x = _forwardSpeed;
+
+        if (_isFlap)
+        {
+            velocity.y += _flapPower;
+            _isFlap = false;
+        }
+
+        _rigidbody.velocity = velocity;
+        Rotate();
     }
 
     protected override void Rotate()
@@ -43,5 +62,7 @@ public class ScrollController : BaseController
 
         _animator.Die();
         _isDead = true;
+
+        OnDroneDeath?.Invoke();
     }
 }
