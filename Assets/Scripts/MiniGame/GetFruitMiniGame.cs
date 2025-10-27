@@ -4,7 +4,6 @@ using UnityEngine;
 public class GetFruitMiniGame : BaseMiniGame
 {
     [Header("References")]
-    [SerializeField] private GameObject _environment;
     [SerializeField] private GameObject _player;
     [SerializeField] private GameObject _drone;
     [SerializeField] private Camera _camera;
@@ -22,12 +21,15 @@ public class GetFruitMiniGame : BaseMiniGame
     public override void Init()
     {
         base.Init();
+        Debug.Log($"{this.name} Init 호출");
 
         if (_camera != null)
         {
             _camera.orthographicSize = _originalCamSize;
             _camera.transform.position = _originalCamPos;
         }
+
+        OnReady();
     }
 
     protected override void Awake()
@@ -64,7 +66,6 @@ public class GetFruitMiniGame : BaseMiniGame
     {
         Debug.Log("GetFruit MiniGame 준비 중...");
 
-        _environment.SetActive(true);
         StartCoroutine(PlayEnterSequence());
 
         Debug.Log("GetFruit MiniGame 준비 완료");
@@ -72,14 +73,26 @@ public class GetFruitMiniGame : BaseMiniGame
 
     private IEnumerator PlayEnterSequence()
     {
-        // 플레이어 낙하
         Debug.Log("플레이어 이동 금지");
         _playerController.enabled = false;
+
+        // 카메라 y 좌표 고정하기
+
+        // 플레이어 좌표 0, 0으로 바꾸기
+        _player.transform.position = Vector3.zero;
+
+        // 플레이어 낙하
         var playerRb = _player.GetComponent<Rigidbody2D>();
         playerRb.gravityScale = 1f;
         playerRb.velocity = Vector2.zero;
 
-        // 드론 
+        // 플레이어 기본 애니메이션
+        // todo: collider에 충돌하기 전까지 떨어지는 애니메이션이었다가 바닥에 닿는 순간 idle으로 변경
+        var playerPh = _player.GetComponent<PlayerHandler>();
+        playerPh.Idle();
+
+        // 드론 좌표 4, 0
+        _drone.transform.position = Vector3.right * 4;
 
 
         // 카메라 줌인 & 오른쪽 이동
