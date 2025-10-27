@@ -1951,20 +1951,20 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 6995551184544517781}
     m_ColliderPaths:
-    - - X: -49666668
-        Y: 90333336
-      - X: -110333336
-        Y: 90333336
-      - X: -110333336
-        Y: -170333328
-      - X: -49666668
-        Y: -170333328
+    - - X: 5333333
+        Y: 5333333
+      - X: -5333333
+        Y: 5333333
+      - X: -5333333
+        Y: -5333333
+      - X: 5333333
+        Y: -5333333
   m_CompositePaths:
     m_Paths:
-    - - {x: -4.9666963, y: -17.033333}
-      - {x: -4.9666963, y: 9.033334}
-      - {x: -11.033334, y: 9.033304}
-      - {x: -11.033304, y: -17.033333}
+    - - {x: 0.53330404, y: -0.5333333}
+      - {x: 0.53330404, y: 0.5333333}
+      - {x: -0.5333333, y: 0.53330404}
+      - {x: -0.53330404, y: -0.5333333}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
@@ -4310,20 +4310,20 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 399644335017870850}
     m_ColliderPaths:
-    - - X: -49666668
-        Y: 90333336
-      - X: -110333336
-        Y: 90333336
-      - X: -110333336
-        Y: -170333328
-      - X: -49666668
-        Y: -170333328
+    - - X: 5333333
+        Y: 5333333
+      - X: -5333333
+        Y: 5333333
+      - X: -5333333
+        Y: -5333333
+      - X: 5333333
+        Y: -5333333
   m_CompositePaths:
     m_Paths:
-    - - {x: -4.9666963, y: -17.033333}
-      - {x: -4.9666963, y: 9.033334}
-      - {x: -11.033334, y: 9.033304}
-      - {x: -11.033304, y: -17.033333}
+    - - {x: 0.53330404, y: -0.5333333}
+      - {x: 0.53330404, y: 0.5333333}
+      - {x: -0.5333333, y: 0.53330404}
+      - {x: -0.53330404, y: -0.5333333}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
@@ -6279,20 +6279,20 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 2149277782020239690}
     m_ColliderPaths:
-    - - X: -49666668
-        Y: 90333336
-      - X: -110333336
-        Y: 90333336
-      - X: -110333336
-        Y: -170333328
-      - X: -49666668
-        Y: -170333328
+    - - X: 5333333
+        Y: 5333333
+      - X: -5333333
+        Y: 5333333
+      - X: -5333333
+        Y: -5333333
+      - X: 5333333
+        Y: -5333333
   m_CompositePaths:
     m_Paths:
-    - - {x: -4.9666963, y: -17.033333}
-      - {x: -4.9666963, y: 9.033334}
-      - {x: -11.033334, y: 9.033304}
-      - {x: -11.033304, y: -17.033333}
+    - - {x: 0.53330404, y: -0.5333333}
+      - {x: 0.53330404, y: 0.5333333}
+      - {x: -0.5333333, y: 0.53330404}
+      - {x: -0.53330404, y: -0.5333333}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
@@ -7155,7 +7155,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2436102350478108035}
-  - {fileID: 2027400710985402177}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9191044826589884349
@@ -7171,41 +7170,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 4098846078760818111, guid: 8adbbfc4cd308e84096b776bc72c50e4, type: 3}
+  _drone: {fileID: 0}
   _camera: {fileID: 4708713044758797675, guid: 9b6dd081a6dd2ac4dbd37a4ff9a3547b, type: 3}
   _cameraTargetSize: 5
   _cameraShiftX: 2
   _flapPower: 5
---- !u!1 &6958029999464497830
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2027400710985402177}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2027400710985402177
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6958029999464497830}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7352212294213507493}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8144817564202657825
 GameObject:
   m_ObjectHideFlags: 0
@@ -9027,20 +8996,20 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 4742590521170202925}
     m_ColliderPaths:
-    - - X: -49666668
-        Y: 90333336
-      - X: -110333336
-        Y: 90333336
-      - X: -110333336
-        Y: -170333328
-      - X: -49666668
-        Y: -170333328
+    - - X: 5333333
+        Y: 5333333
+      - X: -5333333
+        Y: 5333333
+      - X: -5333333
+        Y: -5333333
+      - X: 5333333
+        Y: -5333333
   m_CompositePaths:
     m_Paths:
-    - - {x: -4.9666963, y: -17.033333}
-      - {x: -4.9666963, y: 9.033334}
-      - {x: -11.033334, y: 9.033304}
-      - {x: -11.033304, y: -17.033333}
+    - - {x: 0.53330404, y: -0.5333333}
+      - {x: 0.53330404, y: 0.5333333}
+      - {x: -0.5333333, y: 0.53330404}
+      - {x: -0.53330404, y: -0.5333333}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
