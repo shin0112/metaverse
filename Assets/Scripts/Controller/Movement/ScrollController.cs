@@ -27,6 +27,26 @@ public class ScrollController : BaseController
         _isDead = false;
     }
 
+    public void ResetDronePhysics()
+    {
+        _rigidbody.velocity = Vector2.zero;
+        _rigidbody.angularVelocity = 0f;
+        _rigidbody.gravityScale = 0f;
+        _rigidbody.rotation = 0f;
+
+        _rigidbody.transform.position = Vector3.right * 4f;
+        _rigidbody.transform.rotation = Quaternion.identity;
+    }
+
+    public void ResetState()
+    {
+        _isDead = false;
+        if (_animator != null)
+        {
+            _animator.Idle();
+        }
+    }
+
     public void GetGravity()
     {
         _rigidbody.gravityScale = 1f;

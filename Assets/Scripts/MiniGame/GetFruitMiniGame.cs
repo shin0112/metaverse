@@ -66,6 +66,9 @@ public class GetFruitMiniGame : BaseMiniGame
     protected override void OnExit()
     {
         _droneMovementMode.SetDefaultMode();
+
+        _droneController.ResetDronePhysics();
+        _droneController.ResetState();
     }
 
     protected override void OnReady()
@@ -97,8 +100,10 @@ public class GetFruitMiniGame : BaseMiniGame
         var playerPh = _player.GetComponent<PlayerHandler>();
         playerPh.Idle();
 
-        // 드론 좌표 4, 0
-        _drone.transform.position = Vector3.right * 4;
+        // 드론 상태 초기화
+        _droneController.ResetDronePhysics();
+
+        _droneController.ResetState();
 
         // 카메라 줌인 & 오른쪽 이동
         yield return StartCoroutine(CameraZoomAndShift());
