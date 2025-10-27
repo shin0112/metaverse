@@ -10,7 +10,7 @@ public class LoopGetFruitBg : MonoBehaviour
 
     [Header("Obstacles")]
     [SerializeField] private int _obstacleCount = 0;
-    protected Vector3 obstacleLastPosition = Vector3.zero;
+    protected Vector3 obstacleLastPosition = Vector3.right * 25f;
 
     [Header("Settings")]
     [SerializeField] private float _scrollSpeed = 5f;   // 이동 속도 (모든 레이어 동일)
