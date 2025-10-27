@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class LoopGetFruitBg : MonoBehaviour
@@ -13,7 +13,7 @@ public class LoopGetFruitBg : MonoBehaviour
     protected Vector3 obstacleLastPosition = Vector3.right * 25f;
 
     [Header("Settings")]
-    [SerializeField] private float _scrollSpeed = 5f;   // �̵� �ӵ� (��� ���̾� ����)
+    [SerializeField] private float _scrollSpeed = 5f;   // 이동 속도 (모든 레이어 동일)
     [SerializeField]
     private Dictionary<string, int> _bgCounts = new()
     {
@@ -21,28 +21,99 @@ public class LoopGetFruitBg : MonoBehaviour
         { "Middle", 4 },
         { "Ground", 4 }
     };
-    [SerializeField] private float _spawnOffsetY = 0f;  // ���̾ ���� ������
+    [SerializeField] private float _spawnOffsetY = 0f;  // 레이어별 높이 보정값
 
     private Camera _mainCam;
     private float _screenLeft;
+
+    private Vector3[] _initBackgroundPos;
+    private Vector3[] _initMiddlePos;
+    private Vector3[] _initGroundPos;
 
     private void Start()
     {
         _mainCam = Camera.main;
         _screenLeft = _mainCam.transform.position.x - 15f;
+
+        SaveInitialPositions();
     }
 
     private void OnEnable()
     {
-        ResetLoopScene();
+        SetupObstacles();
+    }
+
+    private void SaveInitialPositions()
+    {
+        var backgrounds = Resources.FindObjectsOfTypeAll<GameObject>();
+        var middles = Resources.FindObjectsOfTypeAll<GameObject>();
+        var grounds = Resources.FindObjectsOfTypeAll<GameObject>();
+
+        // 필터링해서 tag 매칭
+        List<GameObject> bgList = new List<GameObject>();
+        List<GameObject> midList = new List<GameObject>();
+        List<GameObject> groundList = new List<GameObject>();
+
+        foreach (var obj in Resources.FindObjectsOfTypeAll<GameObject>())
+        {
+            if (obj.CompareTag("Background")) bgList.Add(obj);
+            else if (obj.CompareTag("Middle")) midList.Add(obj);
+            else if (obj.CompareTag("Ground")) groundList.Add(obj);
+        }
+
+        _initBackgroundPos = new Vector3[bgList.Count];
+        _initMiddlePos = new Vector3[midList.Count];
+        _initGroundPos = new Vector3[groundList.Count];
+
+        for (int i = 0; i < bgList.Count; i++)
+            _initBackgroundPos[i] = bgList[i].transform.position;
+
+        for (int i = 0; i < midList.Count; i++)
+            _initMiddlePos[i] = midList[i].transform.position;
+
+        for (int i = 0; i < groundList.Count; i++)
+            _initGroundPos[i] = groundList[i].transform.position;
+
+        Debug.Log("배경 초기 위치 저장 완료");
     }
 
     public void ResetLoopScene()
     {
-        Debug.Log("Loop scene reset");
+        Debug.Log("Loop Scene Reset 시작");
 
+        List<GameObject> bgList = new List<GameObject>();
+        List<GameObject> midList = new List<GameObject>();
+        List<GameObject> groundList = new List<GameObject>();
+
+        foreach (var obj in Resources.FindObjectsOfTypeAll<GameObject>())
+        {
+            if (obj.CompareTag("Background")) bgList.Add(obj);
+            else if (obj.CompareTag("Middle")) midList.Add(obj);
+            else if (obj.CompareTag("Ground")) groundList.Add(obj);
+        }
+
+        for (int i = 0; i < bgList.Count && i < _initBackgroundPos.Length; i++)
+            bgList[i].transform.position = _initBackgroundPos[i];
+
+        for (int i = 0; i < midList.Count && i < _initMiddlePos.Length; i++)
+            midList[i].transform.position = _initMiddlePos[i];
+
+        for (int i = 0; i < groundList.Count && i < _initGroundPos.Length; i++)
+            groundList[i].transform.position = _initGroundPos[i];
+
+        // 장애물은 lastPosition만 초기화
+        SetupObstacles();
+
+        Debug.Log("Loop Scene Reset 완료");
+    }
+
+    private void SetupObstacles()
+    {
         Obstacle[] obstacles = GameObject.FindObjectsOfType<Obstacle>(true);
-        obstacleLastPosition = obstacles[0].transform.position;
+        if (obstacles.Length == 0) return;
+
+        // 🔹 lastPosition 초기화
+        obstacleLastPosition = Vector3.right * 25f;
         _obstacleCount = obstacles.Length;
 
         foreach (var obstacle in obstacles)
@@ -50,16 +121,7 @@ public class LoopGetFruitBg : MonoBehaviour
             obstacleLastPosition = obstacle.SetRandomPlace(obstacleLastPosition, _obstacleCount);
         }
 
-        foreach (var tag in _bgCounts.Keys)
-        {
-            GameObject[] bgObjs = GameObject.FindGameObjectsWithTag(tag);
-            float offset = 0f;
-            foreach (var obj in bgObjs)
-            {
-                obj.transform.position = new Vector3(offset, obj.transform.position.y, obj.transform.position.z);
-                offset += ((Renderer)obj.GetComponent<Renderer>()).bounds.size.x;
-            }
-        }
+        Debug.Log("장애물 재배치 완료");
     }
 
     private void Update()
