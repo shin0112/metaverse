@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class AnimationHandler : MonoBehaviour
+public class PlayerHandler : MonoBehaviour
 {
     private static readonly int IsMoving = Animator.StringToHash("IsMoving");
     private static readonly int IsDamage = Animator.StringToHash("IsDamage");
