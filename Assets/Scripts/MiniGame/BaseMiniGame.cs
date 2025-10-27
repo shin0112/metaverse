@@ -2,7 +2,7 @@ using UnityEngine;
 
 public abstract class BaseMiniGame : MonoBehaviour
 {
-    [SerializeField] protected BaseController _controller;
+    protected BaseController _controller;
 
     protected bool _isReady = false;
     protected bool _isStart = false;

@@ -5,7 +5,6 @@ public class GetFruitMiniGame : BaseMiniGame
 {
     [Header("References")]
     [SerializeField] private GameObject _player;
-    [SerializeField] private ScrollController _droneController;
     [SerializeField] private Camera _camera;
 
     [Header("Settings")]
@@ -16,6 +15,7 @@ public class GetFruitMiniGame : BaseMiniGame
     private Vector3 _originalCamPos;
     private float _originalCamSize;
     private TopdownController _playerController;
+    private ScrollController _droneController;
 
     public override void Init()
     {

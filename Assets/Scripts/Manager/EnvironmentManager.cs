@@ -7,6 +7,7 @@ public class EnvironmentManager : MonoBehaviour
 
     [Header("Background References")]
     [SerializeField] private GameObject _home;
+    [SerializeField] private GameObject _getFruit;
 
     private GameObject _current;
 
@@ -32,4 +33,5 @@ public class EnvironmentManager : MonoBehaviour
     }
 
     public void EnterHome() => SetEnvironment(_home);
+    public void EnterGetFruit() => SetEnvironment(_getFruit);
 }
