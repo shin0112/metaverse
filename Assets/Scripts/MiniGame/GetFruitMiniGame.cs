@@ -21,6 +21,7 @@ public class GetFruitMiniGame : BaseMiniGame
 
     private bool _isFlap = false;
     private float _deathCooldown = 0f;
+    private bool _isFirstEnter = true;
 
     private MiniGameManager _miniGameManager;
 
@@ -39,15 +40,15 @@ public class GetFruitMiniGame : BaseMiniGame
 
         _droneMovementMode.SetMiniGameMode();
 
+        _droneController.ClearDeathEvent();
         _droneController.OnDroneDeath += () =>
         {
-            _isStart = false;
-            _isReady = true;
-            _deathCooldown = 1f;
+            //_isStart = false;
+            //_isReady = true;
+            _deathCooldown = .5f;
             Debug.Log("드론 파괴");
         };
 
-        _isReady = false;
         OnReady();
     }
 
@@ -81,7 +82,21 @@ public class GetFruitMiniGame : BaseMiniGame
     {
         Debug.Log("GetFruit MiniGame 준비 중...");
 
-        StartCoroutine(PlayEnterSequence());
+        if (_isFirstEnter)
+        {
+            StartCoroutine(PlayEnterSequence());
+            _isFirstEnter = false;
+        }
+        else
+        {
+            _droneController.ResetDronePhysics();
+            _droneController.ResetState();
+            _droneController.EnableGravity();
+
+            _isReady = true;
+            _isPreparing = false;
+            Debug.Log("바로 Ready 완료");
+        }
 
         Debug.Log("GetFruit MiniGame 준비 완료");
     }

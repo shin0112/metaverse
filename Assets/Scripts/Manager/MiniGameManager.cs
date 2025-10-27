@@ -110,6 +110,12 @@ public class MiniGameManager : MonoBehaviour
 
     public void RestartGame(BaseMiniGame miniGame)
     {
-        miniGame.SendMessage("OnReady");
+        LoopGetFruitBg loopScene = FindObjectOfType<LoopGetFruitBg>();
+        if (loopScene != null)
+        {
+            loopScene.ResetLoopScene();
+        }
+
+        miniGame.Init();
     }
 }

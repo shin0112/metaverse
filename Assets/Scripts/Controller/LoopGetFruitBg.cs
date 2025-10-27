@@ -34,6 +34,13 @@ public class LoopGetFruitBg : MonoBehaviour
 
     private void OnEnable()
     {
+        ResetLoopScene();
+    }
+
+    public void ResetLoopScene()
+    {
+        Debug.Log("Loop scene reset");
+
         Obstacle[] obstacles = GameObject.FindObjectsOfType<Obstacle>(true);
         obstacleLastPosition = obstacles[0].transform.position;
         _obstacleCount = obstacles.Length;
@@ -41,6 +48,17 @@ public class LoopGetFruitBg : MonoBehaviour
         foreach (var obstacle in obstacles)
         {
             obstacleLastPosition = obstacle.SetRandomPlace(obstacleLastPosition, _obstacleCount);
+        }
+
+        foreach (var tag in _bgCounts.Keys)
+        {
+            GameObject[] bgObjs = GameObject.FindGameObjectsWithTag(tag);
+            float offset = 0f;
+            foreach (var obj in bgObjs)
+            {
+                obj.transform.position = new Vector3(offset, obj.transform.position.y, obj.transform.position.z);
+                offset += ((Renderer)obj.GetComponent<Renderer>()).bounds.size.x;
+            }
         }
     }
 

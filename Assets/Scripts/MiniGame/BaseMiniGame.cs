@@ -23,6 +23,7 @@ public abstract class BaseMiniGame : MonoBehaviour
     protected virtual void Update()
     {
         if (_isPreparing) return; // 코루틴 중
+        if (_controller == null) return;
 
         if (_isReady && !_isStart && CheckStartInput())
         {

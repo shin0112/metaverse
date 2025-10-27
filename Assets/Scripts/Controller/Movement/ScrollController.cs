@@ -98,4 +98,6 @@ public class ScrollController : BaseController
 
         OnDroneDeath?.Invoke();
     }
+
+    public void ClearDeathEvent() { OnDroneDeath = null; }
 }
