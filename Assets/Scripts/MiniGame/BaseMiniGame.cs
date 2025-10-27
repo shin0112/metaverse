@@ -6,6 +6,7 @@ public abstract class BaseMiniGame : MonoBehaviour
 
     protected bool _isReady = false;
     protected bool _isStart = false;
+    protected bool _isPreparing = false;
 
     protected virtual void Awake()
     {
@@ -16,10 +17,13 @@ public abstract class BaseMiniGame : MonoBehaviour
     {
         _isReady = true;
         _isStart = false;
+        _isPreparing = false;
     }
 
     protected virtual void Update()
     {
+        if (_isPreparing) return; // 코루틴 중
+
         if (_isReady && !_isStart && CheckStartInput())
         {
             StartGame();

@@ -41,6 +41,8 @@ public class GetFruitMiniGame : BaseMiniGame
 
         _droneController.OnDroneDeath += () =>
         {
+            _isStart = false;
+            _isReady = true;
             _deathCooldown = 1f;
             Debug.Log("드론 파괴");
         };
@@ -86,6 +88,8 @@ public class GetFruitMiniGame : BaseMiniGame
 
     private IEnumerator PlayEnterSequence()
     {
+        _isPreparing = true;
+
         Debug.Log("플레이어 이동 금지");
         _playerController.enabled = false;
 
@@ -113,7 +117,7 @@ public class GetFruitMiniGame : BaseMiniGame
         yield return StartCoroutine(CameraZoomAndShift());
 
         _isReady = true;
-
+        _isPreparing = false;
         Debug.Log("준비 완료");
     }
 
