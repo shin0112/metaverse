@@ -17,7 +17,6 @@ public class GetFruitMiniGame : BaseMiniGame
     private float _originalCamSize;
     private TopdownController _playerController;
     private ScrollController _droneController;
-    private DroneMovementMode _droneMovementMode;
 
     private bool _isFlap = false;
     private float _deathCooldown = 0f;
@@ -38,8 +37,6 @@ public class GetFruitMiniGame : BaseMiniGame
             _camera.transform.position = _originalCamPos;
         }
 
-        _droneMovementMode.SetMiniGameMode();
-
         _droneController.ClearDeathEvent();
         _droneController.OnDroneDeath += () =>
         {
@@ -59,7 +56,6 @@ public class GetFruitMiniGame : BaseMiniGame
         _playerController = _player.GetComponent<TopdownController>();
         _droneController = _drone.GetComponent<ScrollController>();
         _controller = _droneController;
-        _droneMovementMode = _drone.GetComponent<DroneMovementMode>();
 
         if (_camera == null)
         {
@@ -72,8 +68,6 @@ public class GetFruitMiniGame : BaseMiniGame
 
     protected override void OnExit()
     {
-        _droneMovementMode.SetDefaultMode();
-
         _droneController.ResetDronePhysics();
         _droneController.ResetState();
     }

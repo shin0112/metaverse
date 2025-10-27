@@ -17,6 +17,7 @@ public class MiniGameManager : MonoBehaviour
     private FollowCameraController _followCameraController;
     private EnvironmentManager _environmentManager;
     private GetFruitMiniGame _getFruitMiniGame;
+    private DroneMovementMode _droneMovementMode;
 
     private void Awake()
     {
@@ -30,6 +31,7 @@ public class MiniGameManager : MonoBehaviour
     {
         _environmentManager = EnvironmentManager.Instance;
         _followCameraController = FindObjectOfType<FollowCameraController>();
+        _droneMovementMode = FindObjectOfType<DroneMovementMode>();
     }
 
     private void Update()
@@ -72,6 +74,7 @@ public class MiniGameManager : MonoBehaviour
                 _currentMiniGame = _environmentManager.EnterGetFruit();
                 _getFruitMiniGame?.Init();
                 _followCameraController.OnEnterGetFruitMode(_drone.transform);
+                _droneMovementMode.SetMiniGameMode();
                 break;
             default:
                 _environmentManager.EnterHome();
@@ -86,8 +89,6 @@ public class MiniGameManager : MonoBehaviour
         if (_currentMiniGame != null)
         {
             _currentMiniGame.GetComponent<BaseMiniGame>()?.SendMessage("OnExit");
-
-            Destroy(_currentMiniGame);
         }
 
         _isPlaying = false;
@@ -98,7 +99,11 @@ public class MiniGameManager : MonoBehaviour
         if (playerController != null)
         {
             playerController.enabled = true;
+            playerController.ResetPlayer();
         }
+
+        _droneMovementMode.SetDefaultMode();
+        _followCameraController.ChangeTarget(_player.transform);
 
         Debug.Log("MiniGame Á¾·á");
     }

@@ -5,6 +5,12 @@ public class TopdownController : BaseController
     protected Vector2 knockback = Vector2.zero;
     private float _knockbackDuration = .0f;
 
+    public void ResetPlayer()
+    {
+        _rigidbody.transform.position = Vector3.zero;
+        _rigidbody.gravityScale = 0f;
+    }
+
     protected override void FixedUpdate()
     {
         base.FixedUpdate();

@@ -40,4 +40,9 @@ public class FollowCameraController : MonoBehaviour
         target = transform;
         _lockY = true;
     }
+
+    public void ChangeTarget(Transform transform)
+    {
+        target = transform;
+    }
 }
