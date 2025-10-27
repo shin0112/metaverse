@@ -16,7 +16,6 @@ public abstract class BaseMiniGame : MonoBehaviour
     {
         _isReady = true;
         _isStart = false;
-        OnReady();
     }
 
     protected virtual void Update()

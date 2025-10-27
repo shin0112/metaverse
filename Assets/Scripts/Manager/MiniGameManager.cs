@@ -21,6 +21,7 @@ public class MiniGameManager : MonoBehaviour
     {
         _instance = this;
         _getFruitMiniGame = GetComponent<GetFruitMiniGame>();
+
         if (_pressE != null) _pressE.SetActive(false);
     }
 
