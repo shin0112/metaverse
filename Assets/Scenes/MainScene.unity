@@ -334,12 +334,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b89f4739e0335547987c89d3ff6d6ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 4098846078760818111, guid: 8adbbfc4cd308e84096b776bc72c50e4, type: 3}
-  _drone: {fileID: 5167162638893030608, guid: 0d0c7c5bbd091c845911486d78436198, type: 3}
+  _player: {fileID: 564867282}
+  _drone: {fileID: 637987222}
   _camera: {fileID: 4708713044758797675, guid: 9b6dd081a6dd2ac4dbd37a4ff9a3547b, type: 3}
   _cameraTargetSize: 5
   _cameraShiftX: 2
   _flapPower: 5
+--- !u!1 &637987222 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5167162638893030608, guid: 0d0c7c5bbd091c845911486d78436198,
+    type: 3}
+  m_PrefabInstance: {fileID: 1848638789}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1067515466
 GameObject:
   m_ObjectHideFlags: 0
@@ -796,12 +802,12 @@ PrefabInstance:
     - target: {fileID: 1058749562758300646, guid: 0d0c7c5bbd091c845911486d78436198,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.11
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1058749562758300646, guid: 0d0c7c5bbd091c845911486d78436198,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.68
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1058749562758300646, guid: 0d0c7c5bbd091c845911486d78436198,
         type: 3}
@@ -27123,7 +27129,7 @@ CompositeCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -40529,7 +40535,7 @@ CompositeCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -44109,7 +44115,7 @@ CompositeCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
