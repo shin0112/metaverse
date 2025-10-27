@@ -6,11 +6,17 @@ public class Fruit : MonoBehaviour
     private bool _collected = false;
 
     private ScoreManager _scoreManager;
+    private UIManager _uiManager;
 
     private void Awake()
     {
         _renderer = GetComponent<SpriteRenderer>();
+    }
+
+    private void Start()
+    {
         _scoreManager = ScoreManager.Instance;
+        _uiManager = UIManager.Instance;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -22,6 +28,7 @@ public class Fruit : MonoBehaviour
             _collected = true;
 
             _scoreManager.AddScore(1);
+            _uiManager.UpdateScore();
 
             SetAlpha(0f);
         }

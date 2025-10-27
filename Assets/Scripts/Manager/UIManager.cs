@@ -15,11 +15,14 @@ public class UIManager : MonoBehaviour
     UIState _currentState = UIState.Home;
     GetFruitUI _getFruitUI = null;
 
+    GetFruitMiniGame _getFruitMiniGame = null;
+
     private void Awake()
     {
         _instance = this;
 
         _getFruitUI = GetComponentInChildren<GetFruitUI>(true);
+        _getFruitMiniGame = FindObjectOfType<GetFruitMiniGame>(true);
 
         ChangeState(UIState.Home);
     }
@@ -42,5 +45,10 @@ public class UIManager : MonoBehaviour
 #else
         Application.Quit(); // 어플리케이션 종료
 #endif
+    }
+
+    public void UpdateScore()
+    {
+        _getFruitUI.SetUI(ScoreManager.Instance.FruitScore);
     }
 }

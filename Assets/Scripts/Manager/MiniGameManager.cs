@@ -75,6 +75,7 @@ public class MiniGameManager : MonoBehaviour
                 _getFruitMiniGame?.Init();
                 _followCameraController.OnEnterGetFruitMode(_drone.transform);
                 _droneMovementMode.SetMiniGameMode();
+                UIManager.Instance.ChangeState(UIState.GetFruit);
                 break;
             default:
                 _environmentManager.EnterHome();
