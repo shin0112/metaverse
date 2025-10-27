@@ -35,6 +35,13 @@ public class GetFruitMiniGame : BaseMiniGame
         }
 
         _droneMovementMode.SetMiniGameMode();
+
+        _droneController.OnDroneDeath += () =>
+        {
+            _deathCooldown = 1f;
+            Debug.Log("µå·Ð ÆÄ±«");
+        };
+
         OnReady();
     }
 
@@ -55,12 +62,6 @@ public class GetFruitMiniGame : BaseMiniGame
 
         _originalCamPos = _camera.transform.position;
         _originalCamSize = _camera.orthographicSize;
-
-        _droneController.OnDroneDeath += () =>
-        {
-            _deathCooldown = 1f;
-            Debug.Log("µå·Ð ÆÄ±«");
-        };
     }
 
     protected override void OnExit()
