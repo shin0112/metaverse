@@ -1,5 +1,9 @@
+using TMPro;
+
 public class ScoreUI : BaseUI
 {
+    public TextMeshProUGUI TotalScore;
+
     public override void Init(UIManager uiManager)
     {
         base.Init(uiManager);

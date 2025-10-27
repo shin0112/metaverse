@@ -21,8 +21,10 @@ public class GetFruitMiniGame : BaseMiniGame
     private bool _isFlap = false;
     private float _deathCooldown = 0f;
     private bool _isFirstEnter = true;
+    private int _score = 0;
 
     private MiniGameManager _miniGameManager;
+    private ScoreManager _scoreManager;
 
     public override void Init()
     {
@@ -30,6 +32,7 @@ public class GetFruitMiniGame : BaseMiniGame
         Debug.Log($"{this.name} Init È£Ãâ");
 
         _miniGameManager = MiniGameManager.Instance;
+        _scoreManager = ScoreManager.Instance;
 
         if (_camera != null)
         {
@@ -40,6 +43,7 @@ public class GetFruitMiniGame : BaseMiniGame
         _droneController.ClearDeathEvent();
         _droneController.OnDroneDeath += () =>
         {
+            _scoreManager.UpdateFruitScore(_score);
             //_isStart = false;
             //_isReady = true;
             _deathCooldown = .5f;
@@ -83,6 +87,8 @@ public class GetFruitMiniGame : BaseMiniGame
         }
         else
         {
+            _score = 0;
+
             _droneController.ResetDronePhysics();
             _droneController.ResetState();
             _droneController.EnableGravity();

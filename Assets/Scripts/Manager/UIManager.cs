@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
 
     UIState _currentState = UIState.Home;
     GetFruitUI _getFruitUI = null;
+    ScoreUI _scoreUI = null;
 
     GetFruitMiniGame _getFruitMiniGame = null;
 
@@ -22,6 +23,8 @@ public class UIManager : MonoBehaviour
         _instance = this;
 
         _getFruitUI = GetComponentInChildren<GetFruitUI>(true);
+        _scoreUI = GetComponentInChildren<ScoreUI>(true);
+
         _getFruitMiniGame = FindObjectOfType<GetFruitMiniGame>(true);
 
         ChangeState(UIState.Home);
