@@ -598,6 +598,7 @@ MonoBehaviour:
   holeSizeMax: 5
   _topObject: {fileID: 3034461352128671596}
   _bottomObject: {fileID: 4775077959674570672}
+  _fruit: {fileID: 6668320835314302893}
   widthPadding: 10
 --- !u!61 &7557800939170830836
 BoxCollider2D:

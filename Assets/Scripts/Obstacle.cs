@@ -10,6 +10,7 @@ public class Obstacle : MonoBehaviour
 
     [SerializeField] private Transform _topObject;
     [SerializeField] private Transform _bottomObject;
+    [SerializeField] private Fruit _fruit;
 
     public float widthPadding = 15f;
 
@@ -27,6 +28,13 @@ public class Obstacle : MonoBehaviour
         Vector3 placePosition = lastPosition + new Vector3(widthPadding, 0f, 0f);
         placePosition.y = Random.Range(lowPosY, highPosY);
         transform.position = placePosition;
+
+        // ±¸¸Û Áß¾Ó¿¡ ¹èÄ¡
+        if (_fruit != null)
+        {
+            _fruit.transform.localPosition = Vector3.zero;
+            _fruit.Reactivate();
+        }
 
         return placePosition;
     }
