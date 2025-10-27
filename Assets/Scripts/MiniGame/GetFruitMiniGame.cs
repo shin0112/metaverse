@@ -22,10 +22,14 @@ public class GetFruitMiniGame : BaseMiniGame
     private bool _isFlap = false;
     private float _deathCooldown = 0f;
 
+    private MiniGameManager _miniGameManager;
+
     public override void Init()
     {
         base.Init();
         Debug.Log($"{this.name} Init 호출");
+
+        _miniGameManager = MiniGameManager.Instance;
 
         if (_camera != null)
         {
@@ -147,7 +151,7 @@ public class GetFruitMiniGame : BaseMiniGame
             {
                 if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
                 {
-                    // 게임 재시작
+                    _miniGameManager.RestartGame(this);
                 }
             }
             else

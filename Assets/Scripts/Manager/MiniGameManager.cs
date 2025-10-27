@@ -102,4 +102,14 @@ public class MiniGameManager : MonoBehaviour
 
         Debug.Log("MiniGame Á¾·á");
     }
+
+    public void GameOver()
+    {
+
+    }
+
+    public void RestartGame(BaseMiniGame miniGame)
+    {
+        miniGame.SendMessage("OnReady");
+    }
 }
