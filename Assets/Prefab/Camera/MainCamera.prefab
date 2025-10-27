@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 399558459947693951}
   - component: {fileID: 7809237217680216314}
   m_Layer: 0
-  m_Name: GetFruitCamera
+  m_Name: MainCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -5,7 +5,7 @@ public class EnvironmentManager : MonoBehaviour
     private static EnvironmentManager _instance;
     public static EnvironmentManager Instance => _instance;
 
-    [Header("Background References")]
+    [Header("Environment References")]
     [SerializeField] private GameObject _home;
     [SerializeField] private GameObject _getFruit;
 
