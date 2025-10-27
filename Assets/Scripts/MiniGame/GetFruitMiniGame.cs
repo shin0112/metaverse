@@ -5,6 +5,7 @@ public class GetFruitMiniGame : BaseMiniGame
 {
     [Header("References")]
     [SerializeField] private GameObject _player;
+    [SerializeField] private GameObject _drone;
     [SerializeField] private Camera _camera;
 
     [Header("Settings")]
