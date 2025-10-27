@@ -7,6 +7,11 @@ public abstract class BaseMiniGame : MonoBehaviour
     protected bool _isReady = false;
     protected bool _isStart = false;
 
+    protected virtual void Awake()
+    {
+
+    }
+
     public virtual void Init()
     {
         _isReady = true;
