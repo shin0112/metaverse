@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BaseMiniGame : MonoBehaviour
+public abstract class BaseMiniGame : MonoBehaviour
 {
     [SerializeField] protected BaseController _controller;
 
