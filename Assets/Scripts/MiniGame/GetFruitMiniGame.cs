@@ -50,7 +50,7 @@ public class GetFruitMiniGame : BaseMiniGame
         base.Awake();
 
         _playerController = _player.GetComponent<TopdownController>();
-        _droneController = GetComponentInChildren<ScrollController>();
+        _droneController = _drone.GetComponent<ScrollController>();
         _controller = _droneController;
         _droneMovementMode = _drone.GetComponent<DroneMovementMode>();
         _rigidbody = _drone.GetComponent<Rigidbody2D>();
@@ -147,6 +147,8 @@ public class GetFruitMiniGame : BaseMiniGame
 
     protected override void Update()
     {
+        if (_droneController == null) return;
+
         if (_droneController.IsDead)
         {
             if (_deathCooldown <= 0)
@@ -164,6 +166,7 @@ public class GetFruitMiniGame : BaseMiniGame
         {
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
             {
+                Debug.Log("IsFlap is true");
                 _isFlap = true;
             }
         }
@@ -171,6 +174,8 @@ public class GetFruitMiniGame : BaseMiniGame
 
     protected override void FixedUpdate()
     {
+        if (_droneController == null) return;
+
         if (_droneController.IsDead) return;
         OnPlaying();
     }
