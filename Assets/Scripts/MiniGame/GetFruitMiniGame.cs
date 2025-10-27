@@ -1,0 +1,97 @@
+using System.Collections;
+using UnityEngine;
+
+public class GetFruitMiniGame : BaseMiniGame
+{
+    [Header("References")]
+    [SerializeField] private GameObject _player;
+    [SerializeField] private ScrollController _scrollController;
+    [SerializeField] private Camera _camera;
+
+    [Header("Settings")]
+    [SerializeField] private float _cameraTargetSize = 5f;
+    [SerializeField] private float _cameraShiftX = 2f;
+
+    private Vector3 _originalCamPos;
+    private float _originalCamSize;
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        _scrollController = GetComponentInChildren<ScrollController>();
+        _controller = _scrollController;
+
+        if (_camera == null)
+        {
+            _camera = Camera.main;
+        }
+        _originalCamPos = _camera.transform.position;
+        _originalCamSize = _camera.orthographicSize;
+    }
+
+    protected override void OnExit()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    protected override void OnPlaying()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    protected override void OnReady()
+    {
+        Debug.Log("get fruit mini game ready");
+
+        StartCoroutine(PlayEnterSequence());
+    }
+
+    private IEnumerator PlayEnterSequence()
+    {
+        // 플레이어 낙하
+        var playerRb = _player.GetComponent<Rigidbody2D>();
+        playerRb.gravityScale = 1f;
+        playerRb.velocity = Vector2.zero;
+
+        // 드론 
+
+        // 카메라 줌인 & 오른쪽 이동
+        yield return StartCoroutine(CameraZoonAndShift());
+
+        // 대기
+        _isReady = true;
+    }
+
+    private IEnumerable CameraZoonAndShift()
+    {
+        float duration = 1f;
+        float t = 0f;
+        Vector3 startPos = _originalCamPos;
+        Vector3 targetPos = _originalCamPos + Vector3.right * _cameraShiftX;
+        float startSize = _originalCamSize;
+
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+            _camera.orthographicSize = Mathf.Lerp(startSize, _cameraTargetSize, t / duration);
+            _camera.transform.position = Vector3.Lerp(startPos, targetPos, t / duration);
+            yield return null;
+        }
+    }
+
+    protected override void OnStart()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    protected override void StartGame()
+    {
+        base.StartGame();
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+    }
+}
