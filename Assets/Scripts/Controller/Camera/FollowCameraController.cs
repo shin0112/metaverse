@@ -3,6 +3,11 @@ using UnityEngine;
 public class FollowCameraController : MonoBehaviour
 {
     public Transform target;
+
+    [Header("Axis Options")]
+    [SerializeField] private bool _lockY = false;
+    [SerializeField] private float _fixedY = 0f;
+
     float offsetX;
     float offsetY;
 
@@ -18,9 +23,13 @@ public class FollowCameraController : MonoBehaviour
     {
         if (target == null) return;
 
-        Vector3 pos = transform.position;
-        pos.x = target.position.x + offsetX;
-        pos.y = target.position.y + offsetY;
+        float targetY = _lockY ? _fixedY : target.position.y + offsetX;
+        Vector3 pos = new(target.position.x + offsetX, targetY, transform.position.z)
+        {
+            x = target.position.x + offsetX,
+            y = target.position.y + offsetY
+        };
+
         transform.position = pos;
     }
 }
