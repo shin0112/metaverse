@@ -25,7 +25,7 @@ public class DroneHandler : AnimationHandler
 
     public override void Move(Vector2 obj)
     {
-        throw new System.NotImplementedException();
+
     }
 
     private IEnumerator TransitionToDead(float delay)

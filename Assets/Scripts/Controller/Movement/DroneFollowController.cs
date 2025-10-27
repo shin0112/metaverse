@@ -11,7 +11,7 @@ public class DroneFollowController : BaseController
         if (_target == null) return;
 
         Vector3 targetPos = _target.position + new Vector3(0, 1.5f, 0); // 1.5 ³ô°Ô
-        Vector2 dir = _target.position - transform.position;
+        Vector2 dir = targetPos - transform.position;
 
         if (dir.magnitude > _stopDistance)
         {
@@ -43,6 +43,8 @@ public class DroneFollowController : BaseController
     protected override void Start()
     {
         base.Start();
+        _rigidbody.gravityScale = 0f;
+        _rigidbody.freezeRotation = true;
 
         if (_target == null)
         {
@@ -52,6 +54,8 @@ public class DroneFollowController : BaseController
                 _target = player.transform;
             }
         }
+
+        transform.position = new Vector3(0, 1.5f, 0);
     }
 
     protected override void Update()

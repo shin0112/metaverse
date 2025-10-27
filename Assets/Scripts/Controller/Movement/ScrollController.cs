@@ -7,11 +7,17 @@ public class ScrollController : BaseController
     private DroneHandler _animator;
     private bool _isDead;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        _animator = GetComponent<DroneHandler>();
+    }
+
     protected override void Start()
     {
         base.Start();
         _rigidbody.gravityScale = 1f;
-        _animator = GetComponent<DroneHandler>();
+        _rigidbody.freezeRotation = false;
         _isDead = false;
     }
 
