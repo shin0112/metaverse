@@ -7,10 +7,13 @@ public class ScrollController : BaseController
     private DroneHandler _animator;
     private bool _isDead;
 
+    private DroneMovementMode _droneMovementMode;
+
     protected override void Awake()
     {
         base.Awake();
         _animator = GetComponent<DroneHandler>();
+        _droneMovementMode = GetComponent<DroneMovementMode>();
     }
 
     protected override void Start()
@@ -35,6 +38,8 @@ public class ScrollController : BaseController
     public void OnCollisionEnter2D(Collision2D collision)
     {
         if (_isDead) return;
+
+        if (_droneMovementMode == null || !_droneMovementMode.IsMiniGameMode) return;
 
         _animator.Die();
         _isDead = true;
