@@ -33,10 +33,10 @@ public class BaseController : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
-        if (_rigidbody.IsSleeping())
-        {
-            _rigidbody.WakeUp();
-        }
+        //if (_rigidbody.IsSleeping())
+        //{
+        //    _rigidbody.WakeUp();
+        //}
 
         Movement(movementDirection);
     }

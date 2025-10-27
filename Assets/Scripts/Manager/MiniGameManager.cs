@@ -8,9 +8,6 @@ public class MiniGameManager : MonoBehaviour
     [SerializeField] private GameObject _player;
     [SerializeField] private GameObject _pressE;
 
-    [Header("MiniGame Prefabs")]
-    [SerializeField] private GameObject _getFruitPrefab;
-
     private bool _isInRange = false;
     private bool _isPlaying = false;
     private int _currentType = 0;

@@ -4,6 +4,7 @@ using UnityEngine;
 public class GetFruitMiniGame : BaseMiniGame
 {
     [Header("References")]
+    [SerializeField] private GameObject _environment;
     [SerializeField] private GameObject _player;
     [SerializeField] private GameObject _drone;
     [SerializeField] private Camera _camera;
@@ -61,9 +62,12 @@ public class GetFruitMiniGame : BaseMiniGame
 
     protected override void OnReady()
     {
-        Debug.Log("get fruit mini game ready");
+        Debug.Log("GetFruit MiniGame 준비 중...");
 
+        _environment.SetActive(true);
         StartCoroutine(PlayEnterSequence());
+
+        Debug.Log("GetFruit MiniGame 준비 완료");
     }
 
     private IEnumerator PlayEnterSequence()

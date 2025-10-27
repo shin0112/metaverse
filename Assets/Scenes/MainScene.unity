@@ -699,6 +699,7 @@ GameObject:
   m_Component:
   - component: {fileID: 568469345}
   - component: {fileID: 568469344}
+  - component: {fileID: 568469346}
   m_Layer: 0
   m_Name: MiniGameManager
   m_TagString: Untagged
@@ -737,6 +738,25 @@ Transform:
   - {fileID: 321948495}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &568469346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 568469343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b89f4739e0335547987c89d3ff6d6ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _environment: {fileID: 1356379869}
+  _player: {fileID: 4098846078760818111, guid: 8adbbfc4cd308e84096b776bc72c50e4, type: 3}
+  _drone: {fileID: 5167162638893030608, guid: 0d0c7c5bbd091c845911486d78436198, type: 3}
+  _camera: {fileID: 4708713044758797675, guid: 9b6dd081a6dd2ac4dbd37a4ff9a3547b, type: 3}
+  _cameraTargetSize: 5
+  _cameraShiftX: 2
+  _flapPower: 5
 --- !u!1001 &575937602
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1145,13 +1165,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9191044826589884349, guid: 3774acef348bebd418e49768bd64c457,
-        type: 3}
+    - target: {fileID: 0}
       propertyPath: _drone
       value: 
       objectReference: {fileID: 5167162638893030608, guid: 0d0c7c5bbd091c845911486d78436198,
         type: 3}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1546,6 +1566,12 @@ MonoBehaviour:
   _home: {fileID: 8999306312563096013, guid: 403e4799efa863b4e943476393e2b5d1, type: 3}
   _getFruit: {fileID: 6918217761474976859, guid: 3774acef348bebd418e49768bd64c457,
     type: 3}
+--- !u!1 &1356379869 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6918217761474976859, guid: 3774acef348bebd418e49768bd64c457,
+    type: 3}
+  m_PrefabInstance: {fileID: 575937602}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1463762238
 GameObject:
   m_ObjectHideFlags: 0
