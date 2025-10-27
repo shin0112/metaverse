@@ -1,18 +1,45 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
+public enum UIState
+{
+    Home,
+    GetFruit,
+}
 
 public class UIManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private static UIManager _instance;
+    public static UIManager Instance => _instance;
+
+    UIState _currentState = UIState.Home;
+    GetFruitUI _getFruitUI = null;
+
+    private void Awake()
     {
-        
+        _instance = this;
+
+        _getFruitUI = GetComponentInChildren<GetFruitUI>(true);
+
+        ChangeState(UIState.Home);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ChangeState(UIState state)
     {
-        
+        _currentState = state;
+        _getFruitUI?.SetActive(_currentState);
+    }
+
+    public void OnClickStart()
+    {
+        ChangeState(UIState.GetFruit);
+    }
+
+    public void OnClickExit()
+    {
+#if UNITY_EDITOR // 이런 식으로 작성하면 각 os에 맞춰서 다른 동작도 가능함
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit(); // 어플리케이션 종료
+#endif
     }
 }
