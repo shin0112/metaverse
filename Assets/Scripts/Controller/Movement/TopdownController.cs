@@ -5,9 +5,9 @@ public class TopdownController : BaseController
     protected Vector2 knockback = Vector2.zero;
     private float _knockbackDuration = .0f;
 
-    public void ResetPlayer()
+    public void ResetPlayer(Vector3 pos)
     {
-        _rigidbody.transform.position = Vector3.zero;
+        _rigidbody.transform.position = pos;
         _rigidbody.gravityScale = 0f;
     }
 

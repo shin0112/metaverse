@@ -95,12 +95,13 @@ public class MiniGameManager : MonoBehaviour
         _isPlaying = false;
 
         _environmentManager.EnterHome();
+        UIManager.Instance.ChangeState(UIState.Home);
 
         var playerController = _player.GetComponent<TopdownController>();
         if (playerController != null)
         {
             playerController.enabled = true;
-            playerController.ResetPlayer();
+            playerController.ResetPlayer(new Vector3(11f, 13f));
         }
 
         _droneMovementMode.SetDefaultMode();

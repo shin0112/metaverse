@@ -44,5 +44,6 @@ public class FollowCameraController : MonoBehaviour
     public void ChangeTarget(Transform transform)
     {
         target = transform;
+        this.transform.position = target.position;
     }
 }
