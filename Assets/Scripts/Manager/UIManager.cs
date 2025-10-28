@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour
     UIState _currentState = UIState.Home;
     GetFruitUI _getFruitUI = null;
     ScoreUI _scoreUI = null;
+    HomeUI _homeUI = null;
 
     GetFruitMiniGame _getFruitMiniGame = null;
     ScoreManager _scoreManager = null;
@@ -25,6 +26,7 @@ public class UIManager : MonoBehaviour
 
         _getFruitUI = GetComponentInChildren<GetFruitUI>(true);
         _scoreUI = GetComponentInChildren<ScoreUI>(true);
+        _homeUI = GetComponentInChildren<HomeUI>(true);
 
         _getFruitMiniGame = FindObjectOfType<GetFruitMiniGame>(true);
 
@@ -42,6 +44,8 @@ public class UIManager : MonoBehaviour
     {
         _currentState = state;
         _getFruitUI?.SetActive(_currentState);
+        //_scoreUI?.SetActive(_currentState);
+        _homeUI?.SetActive(_currentState);
     }
 
     public void ShowInfoText()
