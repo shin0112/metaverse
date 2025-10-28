@@ -7,11 +7,14 @@ public class ScoreManager : MonoBehaviour
 
     private int _fruitScore = 0;
     public int FruitScore => _fruitScore;
+    private int _bestFruitScore = 0;
+    public int BestFruitScore => _bestFruitScore;
 
     int _totalScore = 0;
     public int TotalScore => _totalScore;
 
     private const string TotalScoreKey = "TotalScore";
+    private const string BestFruitScoreKey = "BestFruitScore";
 
     private void Awake()
     {
@@ -21,11 +24,16 @@ public class ScoreManager : MonoBehaviour
     public void AddScore(int amount)
     {
         _fruitScore += amount;
+        if (_bestFruitScore < _fruitScore)
+        {
+            _bestFruitScore = _fruitScore;
+        }
         Debug.Log($"현재 점수: {_fruitScore}");
     }
 
     public void LoadTotalScore()
     {
+        _bestFruitScore = PlayerPrefs.GetInt(BestFruitScoreKey, 0);
         _totalScore = PlayerPrefs.GetInt(TotalScoreKey, 0);
     }
 
@@ -33,6 +41,7 @@ public class ScoreManager : MonoBehaviour
     {
         _totalScore += _fruitScore;
         PlayerPrefs.SetInt(TotalScoreKey, _totalScore);
+        PlayerPrefs.SetInt(BestFruitScoreKey, _bestFruitScore);
 
         Debug.Log($"총 점수 업데이트: {_totalScore} (+{_fruitScore})");
 

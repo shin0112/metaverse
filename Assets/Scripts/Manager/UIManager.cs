@@ -91,7 +91,7 @@ public class UIManager : MonoBehaviour
 
     public void UpdateScore()
     {
-        _getFruitUI.SetUI(_scoreManager.FruitScore);
+        _getFruitUI.SetUI(_scoreManager.FruitScore, _scoreManager.BestFruitScore);
         _scoreUI.SetUI(_scoreManager.TotalScore);
     }
 }
