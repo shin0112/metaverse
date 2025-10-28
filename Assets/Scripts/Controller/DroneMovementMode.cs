@@ -43,6 +43,8 @@ public class DroneMovementMode : MonoBehaviour
             _collider.isTrigger = true;
         }
 
+        DroneHandler animatorHandler = GetComponent<DroneHandler>();
+        animatorHandler.Idle();
         Debug.Log("드론 기본 모드 활성화");
     }
 }

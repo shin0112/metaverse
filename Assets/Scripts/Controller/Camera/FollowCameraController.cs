@@ -44,6 +44,16 @@ public class FollowCameraController : MonoBehaviour
     public void ChangeTarget(Transform transform)
     {
         target = transform;
-        this.transform.position = target.position;
+        _lockY = false;
+
+        // offset Àç°è»ê
+        _offsetX = 0f;
+        _offsetY = 0f;
+
+        transform.position = new Vector3(
+            target.position.x,
+            target.position.y,
+            transform.position.z
+        );
     }
 }
