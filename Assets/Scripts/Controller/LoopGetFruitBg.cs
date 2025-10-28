@@ -45,33 +45,21 @@ public class LoopGetFruitBg : MonoBehaviour
 
     private void SaveInitialPositions()
     {
-        var backgrounds = Resources.FindObjectsOfTypeAll<GameObject>();
-        var middles = Resources.FindObjectsOfTypeAll<GameObject>();
-        var grounds = Resources.FindObjectsOfTypeAll<GameObject>();
+        GameObject[] bgList = GameObject.FindGameObjectsWithTag("Background");
+        GameObject[] midList = GameObject.FindGameObjectsWithTag("Middle");
+        GameObject[] groundList = GameObject.FindGameObjectsWithTag("Ground");
 
-        // 필터링해서 tag 매칭
-        List<GameObject> bgList = new List<GameObject>();
-        List<GameObject> midList = new List<GameObject>();
-        List<GameObject> groundList = new List<GameObject>();
+        _initBackgroundPos = new Vector3[bgList.Length];
+        _initMiddlePos = new Vector3[midList.Length];
+        _initGroundPos = new Vector3[groundList.Length];
 
-        foreach (var obj in Resources.FindObjectsOfTypeAll<GameObject>())
-        {
-            if (obj.CompareTag("Background")) bgList.Add(obj);
-            else if (obj.CompareTag("Middle")) midList.Add(obj);
-            else if (obj.CompareTag("Ground")) groundList.Add(obj);
-        }
-
-        _initBackgroundPos = new Vector3[bgList.Count];
-        _initMiddlePos = new Vector3[midList.Count];
-        _initGroundPos = new Vector3[groundList.Count];
-
-        for (int i = 0; i < bgList.Count; i++)
+        for (int i = 0; i < bgList.Length; i++)
             _initBackgroundPos[i] = bgList[i].transform.position;
 
-        for (int i = 0; i < midList.Count; i++)
+        for (int i = 0; i < midList.Length; i++)
             _initMiddlePos[i] = midList[i].transform.position;
 
-        for (int i = 0; i < groundList.Count; i++)
+        for (int i = 0; i < groundList.Length; i++)
             _initGroundPos[i] = groundList[i].transform.position;
 
         Debug.Log("배경 초기 위치 저장 완료");
@@ -81,24 +69,17 @@ public class LoopGetFruitBg : MonoBehaviour
     {
         Debug.Log("Loop Scene Reset 시작");
 
-        List<GameObject> bgList = new List<GameObject>();
-        List<GameObject> midList = new List<GameObject>();
-        List<GameObject> groundList = new List<GameObject>();
+        GameObject[] bgList = GameObject.FindGameObjectsWithTag("Background");
+        GameObject[] midList = GameObject.FindGameObjectsWithTag("Middle");
+        GameObject[] groundList = GameObject.FindGameObjectsWithTag("Ground");
 
-        foreach (var obj in Resources.FindObjectsOfTypeAll<GameObject>())
-        {
-            if (obj.CompareTag("Background")) bgList.Add(obj);
-            else if (obj.CompareTag("Middle")) midList.Add(obj);
-            else if (obj.CompareTag("Ground")) groundList.Add(obj);
-        }
-
-        for (int i = 0; i < bgList.Count && i < _initBackgroundPos.Length; i++)
+        for (int i = 0; i < bgList.Length && i < _initBackgroundPos.Length; i++)
             bgList[i].transform.position = _initBackgroundPos[i];
 
-        for (int i = 0; i < midList.Count && i < _initMiddlePos.Length; i++)
+        for (int i = 0; i < midList.Length && i < _initMiddlePos.Length; i++)
             midList[i].transform.position = _initMiddlePos[i];
 
-        for (int i = 0; i < groundList.Count && i < _initGroundPos.Length; i++)
+        for (int i = 0; i < groundList.Length && i < _initGroundPos.Length; i++)
             groundList[i].transform.position = _initGroundPos[i];
 
         // 장애물은 lastPosition만 초기화
