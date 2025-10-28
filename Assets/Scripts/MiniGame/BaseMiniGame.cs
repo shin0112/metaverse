@@ -1,12 +1,28 @@
 using UnityEngine;
 
+public enum MiniGameState
+{
+    Preparing,
+    Ready,
+    Wait,
+    Start,
+    Stop,
+}
+
 public abstract class BaseMiniGame : MonoBehaviour
 {
     protected BaseController _controller;
 
-    protected bool _isReady = false;
-    protected bool _isStart = false;
-    protected bool _isPreparing = false;
+    private MiniGameState _currentState = MiniGameState.Preparing;
+    protected MiniGameState CurrentState
+    {
+        get { return _currentState; }
+        set
+        {
+            _currentState = value;
+            Debug.Log($"현재 상태: {_currentState.ToString()}");
+        }
+    }
 
     protected virtual void Awake()
     {
@@ -15,22 +31,24 @@ public abstract class BaseMiniGame : MonoBehaviour
 
     public virtual void Init()
     {
-        _isReady = true;
-        _isStart = false;
-        _isPreparing = false;
+        CurrentState = MiniGameState.Preparing;
     }
 
     protected virtual void Update()
     {
-        if (_isPreparing) return; // 코루틴 중
         if (_controller == null) return;
 
-        if (_isReady && !_isStart && CheckStartInput())
+        if (CurrentState is MiniGameState.Stop && CheckStartInput())
+        {
+            OnReady();
+        }
+
+        if (CurrentState is MiniGameState.Ready && CheckStartInput())
         {
             StartGame();
         }
 
-        if (_isStart)
+        if (CurrentState is MiniGameState.Start)
             OnPlaying();
     }
 
@@ -47,8 +65,7 @@ public abstract class BaseMiniGame : MonoBehaviour
 
     protected virtual void StartGame()
     {
-        _isReady = false;
-        _isStart = true;
+        CurrentState = MiniGameState.Start;
         OnStart();
     }
 

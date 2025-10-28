@@ -28,8 +28,9 @@ public class GetFruitMiniGame : BaseMiniGame
 
     public override void Init()
     {
-        base.Init();
         Debug.Log($"{this.name} Init 호출");
+
+        CurrentState = MiniGameState.Preparing;
 
         _miniGameManager = MiniGameManager.Instance;
         _scoreManager = ScoreManager.Instance;
@@ -43,10 +44,15 @@ public class GetFruitMiniGame : BaseMiniGame
         _droneController.ClearDeathEvent();
         _droneController.OnDroneDeath += () =>
         {
-            _scoreManager.UpdateFruitScore(_score);
-            //_isStart = false;
-            //_isReady = true;
-            _deathCooldown = .5f;
+            CurrentState = MiniGameState.Stop;
+
+            // ui에 점수 update
+            ScoreManager.Instance.UpdateTotalScore(_score);
+            _score = 0;
+            ScoreManager.Instance.UpdateFruitScore(_score);
+            UIManager.Instance.UpdateScore();
+
+            _deathCooldown = 1f;
             Debug.Log("드론 파괴");
         };
 
@@ -87,23 +93,19 @@ public class GetFruitMiniGame : BaseMiniGame
         }
         else
         {
-            _score = 0;
-
             _droneController.ResetDronePhysics();
             _droneController.ResetState();
-            _droneController.EnableGravity();
 
-            _isReady = true;
-            _isPreparing = false;
             Debug.Log("바로 Ready 완료");
         }
 
+        CurrentState = MiniGameState.Ready;
         Debug.Log("GetFruit MiniGame 준비 완료");
     }
 
     private IEnumerator PlayEnterSequence()
     {
-        _isPreparing = true;
+        CurrentState = MiniGameState.Preparing;
 
         Debug.Log("플레이어 이동 금지");
         _playerController.enabled = false;
@@ -131,8 +133,6 @@ public class GetFruitMiniGame : BaseMiniGame
         // 카메라 줌인 & 오른쪽 이동
         yield return StartCoroutine(CameraZoomAndShift());
 
-        _isReady = true;
-        _isPreparing = false;
         Debug.Log("준비 완료");
     }
 
@@ -156,15 +156,15 @@ public class GetFruitMiniGame : BaseMiniGame
     protected override void OnStart()
     {
         Debug.Log("GetFruitMiniGame start");
+        CurrentState = MiniGameState.Start;
         _isFlap = true;
-        _isStart = true;
         _droneController.EnableGravity(); // 중력
         _droneController.Flap(ref _isFlap);
     }
 
     protected override void OnPlaying()
     {
-        if (_droneController.IsDead)
+        if (CurrentState is MiniGameState.Stop)
         {
             if (_deathCooldown <= 0)
             {
@@ -189,8 +189,8 @@ public class GetFruitMiniGame : BaseMiniGame
 
     protected override void FixedUpdate()
     {
-        if (_droneController == null || !_isStart) return;
-        if (_droneController.IsDead) return;
+        if (_droneController == null) return;
+        if (CurrentState != MiniGameState.Start) return;
 
         if (_isFlap)
         {
