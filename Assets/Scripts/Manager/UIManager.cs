@@ -25,8 +25,11 @@ public class UIManager : MonoBehaviour
         _instance = this;
 
         _getFruitUI = GetComponentInChildren<GetFruitUI>(true);
+        _getFruitUI?.Init(this);
         _scoreUI = GetComponentInChildren<ScoreUI>(true);
+        _scoreUI?.Init(this);
         _homeUI = GetComponentInChildren<HomeUI>(true);
+        _homeUI?.Init(this);
 
         _getFruitMiniGame = FindObjectOfType<GetFruitMiniGame>(true);
 

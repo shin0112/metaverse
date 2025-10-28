@@ -10,6 +10,7 @@ public class HomeUI : BaseUI
         base.Init(uiManager);
 
         _exitButton = transform.Find("ExitButton").GetComponent<Button>();
+        if (_exitButton == null) Debug.Log("Exit Button ¾øÀ½");
 
         _exitButton.onClick.AddListener(OnClickExitButton);
     }
