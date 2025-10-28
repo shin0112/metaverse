@@ -18,11 +18,6 @@ public class ScoreManager : MonoBehaviour
         _instance = this;
     }
 
-    private void Start()
-    {
-        LoadTotalScore();
-    }
-
     public void AddScore(int amount)
     {
         _fruitScore += amount;

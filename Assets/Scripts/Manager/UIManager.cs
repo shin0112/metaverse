@@ -34,6 +34,8 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         _scoreManager = ScoreManager.Instance;
+        _scoreManager.LoadTotalScore(); // 점수 불러오기
+        UpdateScore(); // ui로 보여주기
     }
 
     public void ChangeState(UIState state)
