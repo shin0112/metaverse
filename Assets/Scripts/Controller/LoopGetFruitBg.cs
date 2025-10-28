@@ -3,11 +3,6 @@ using UnityEngine;
 
 public class LoopGetFruitBg : MonoBehaviour
 {
-    [Header("Layers")]
-    [SerializeField] private GameObject _backLayerPrefab;
-    [SerializeField] private GameObject _middleLayerPrefab;
-    [SerializeField] private GameObject _groundLayerPrefab;
-
     [Header("Obstacles")]
     [SerializeField] private int _obstacleCount = 0;
     protected Vector3 obstacleLastPosition = Vector3.right * 25f;
@@ -26,10 +21,6 @@ public class LoopGetFruitBg : MonoBehaviour
     private Camera _mainCam;
     private float _screenLeft;
 
-    private Vector3[] _initBackgroundPos;
-    private Vector3[] _initMiddlePos;
-    private Vector3[] _initGroundPos;
-
     private void Start()
     {
         _mainCam = Camera.main;
@@ -38,56 +29,11 @@ public class LoopGetFruitBg : MonoBehaviour
 
     private void OnEnable()
     {
-        SaveInitialPositions();
-        SetupObstacles();
-    }
-
-    private void SaveInitialPositions()
-    {
-        GameObject[] bgList = GameObject.FindGameObjectsWithTag("Background");
-        GameObject[] midList = GameObject.FindGameObjectsWithTag("Middle");
-        GameObject[] groundList = GameObject.FindGameObjectsWithTag("Ground");
-
-        _initBackgroundPos = new Vector3[bgList.Length];
-        _initMiddlePos = new Vector3[midList.Length];
-        _initGroundPos = new Vector3[groundList.Length];
-
-        for (int i = 0; i < bgList.Length; i++)
-            _initBackgroundPos[i] = bgList[i].transform.position;
-
-        for (int i = 0; i < midList.Length; i++)
-            _initMiddlePos[i] = midList[i].transform.position;
-
-        for (int i = 0; i < groundList.Length; i++)
-            _initGroundPos[i] = groundList[i].transform.position;
-
-        Debug.Log("배경 초기 위치 저장 완료");
-    }
-
-    public void ResetLoopScene()
-    {
-        Debug.Log("Loop Scene Reset 시작");
-
-        GameObject[] bgList = GameObject.FindGameObjectsWithTag("Background");
-        GameObject[] midList = GameObject.FindGameObjectsWithTag("Middle");
-        GameObject[] groundList = GameObject.FindGameObjectsWithTag("Ground");
-
-        for (int i = 0; i < bgList.Length && i < _initBackgroundPos.Length; i++)
-            bgList[i].transform.position = _initBackgroundPos[i];
-
-        for (int i = 0; i < midList.Length && i < _initMiddlePos.Length; i++)
-            midList[i].transform.position = _initMiddlePos[i];
-
-        for (int i = 0; i < groundList.Length && i < _initGroundPos.Length; i++)
-            groundList[i].transform.position = _initGroundPos[i];
-
-        // 장애물은 lastPosition만 초기화
         SetupObstacles();
 
-        Debug.Log("Loop Scene Reset 완료");
     }
 
-    private void SetupObstacles()
+    public void SetupObstacles()
     {
         Obstacle[] obstacles = GameObject.FindObjectsOfType<Obstacle>(true);
         if (obstacles.Length == 0) return;
@@ -102,12 +48,6 @@ public class LoopGetFruitBg : MonoBehaviour
         }
 
         Debug.Log("장애물 재배치 완료");
-    }
-
-    private void Update()
-    {
-        if (_mainCam == null) return;
-
     }
 
     public void OnTriggerEnter2D(Collider2D collision)

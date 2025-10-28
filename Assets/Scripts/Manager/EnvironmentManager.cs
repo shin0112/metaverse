@@ -9,6 +9,9 @@ public class EnvironmentManager : MonoBehaviour
     [SerializeField] private GameObject _home;
     [SerializeField] private GameObject _getFruit;
 
+    [Header("Environment Prefab")]
+    [SerializeField] private GameObject _getFruitPrefab;
+
     private GameObject _current;
 
     private void Awake()
@@ -53,5 +56,25 @@ public class EnvironmentManager : MonoBehaviour
         }
 
         return _getFruit;
+    }
+
+    public void MakeGetFruitEnvironment()
+    {
+        Transform existing = _getFruit.transform.Find("Background");
+
+        if (existing != null)
+        {
+            Debug.Log("기존 배경 삭제");
+            Destroy(existing.gameObject);
+        }
+
+        if (_getFruitPrefab != null)
+        {
+            GameObject newBg = Instantiate(_getFruitPrefab, _getFruit.transform);
+            newBg.name = "Background";
+            Debug.Log("새로운 배경 생성");
+            var lp = FindObjectOfType<LoopGetFruitBg>();
+            lp.SetupObstacles();
+        }
     }
 }

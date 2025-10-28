@@ -46,12 +46,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8248e431c420f3345aed8ea7e89578ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _backLayerPrefab: {fileID: 3340872719272012904, guid: 8673f81ffe9b64f48a0b0157c5f5a86d,
-    type: 3}
-  _middleLayerPrefab: {fileID: 6591799119892700853, guid: 358d67f38b0b2714b954f035456f1722,
-    type: 3}
-  _groundLayerPrefab: {fileID: 9154958064730898153, guid: b032429f1f2aa194aa023f79a9a5c420,
-    type: 3}
   _obstacleCount: 0
   _scrollSpeed: 5
   _spawnOffsetY: 0
@@ -155,7 +149,7 @@ Transform:
   m_GameObject: {fileID: 5603185650469152527}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 166.01257, y: 0, z: -10}
+  m_LocalPosition: {x: 178.01257, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

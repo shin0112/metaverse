@@ -23,6 +23,7 @@ public class GetFruitMiniGame : BaseMiniGame
     private bool _isFirstEnter = true;
     private int _score = 0;
 
+    private EnvironmentManager _environmentManager;
     private MiniGameManager _miniGameManager;
     private ScoreManager _scoreManager;
     private UIManager _uiManager;
@@ -33,6 +34,7 @@ public class GetFruitMiniGame : BaseMiniGame
 
         CurrentState = MiniGameState.Preparing;
 
+        _environmentManager = EnvironmentManager.Instance;
         _miniGameManager = MiniGameManager.Instance;
         _scoreManager = ScoreManager.Instance;
         _uiManager = UIManager.Instance;
@@ -76,13 +78,7 @@ public class GetFruitMiniGame : BaseMiniGame
         Debug.Log("GetFruit MiniGame 준비 중...");
 
         // 게임 배경 초기화
-        LoopGetFruitBg loopScene = FindObjectOfType<LoopGetFruitBg>();
-        if (loopScene != null)
-        {
-            loopScene.ResetLoopScene();
-            Debug.Log("배경 초기화 완료");
-
-        }
+        _environmentManager.MakeGetFruitEnvironment();
 
         // 드론 초기화
         _droneController.ResetDronePhysics();
