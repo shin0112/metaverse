@@ -4,6 +4,7 @@ public class TopdownController : BaseController
 {
     protected Vector2 knockback = Vector2.zero;
     private float _knockbackDuration = .0f;
+    private bool _isLeft = false;
 
     public void ResetPlayer(Vector3 pos)
     {
@@ -53,8 +54,16 @@ public class TopdownController : BaseController
 
     protected override void Rotate()
     {
-        bool isLeft = movementDirection.x < 0;
-        characterRenderer.flipX = isLeft;
+        if (movementDirection.x < 0)
+        {
+            _isLeft = true;
+        }
+        else if (movementDirection.x > 0)
+        {
+            _isLeft = false;
+        }
+
+        characterRenderer.flipX = _isLeft;
     }
 
     public void ApplyKnockback(Transform other, float power, float duration)
