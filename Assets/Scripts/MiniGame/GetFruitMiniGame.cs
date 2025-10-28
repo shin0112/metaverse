@@ -25,6 +25,7 @@ public class GetFruitMiniGame : BaseMiniGame
 
     private MiniGameManager _miniGameManager;
     private ScoreManager _scoreManager;
+    private UIManager _uiManager;
 
     public override void Init()
     {
@@ -34,6 +35,7 @@ public class GetFruitMiniGame : BaseMiniGame
 
         _miniGameManager = MiniGameManager.Instance;
         _scoreManager = ScoreManager.Instance;
+        _uiManager = UIManager.Instance;
 
         if (_camera != null)
         {
@@ -100,6 +102,9 @@ public class GetFruitMiniGame : BaseMiniGame
     {
         CurrentState = MiniGameState.Stop;
 
+        // ui info text 보여주기
+        _uiManager.ShowInfoText();
+
         // ui에 점수 update
         ScoreManager.Instance.CommitRoundScore();
         UIManager.Instance.UpdateScore();
@@ -161,6 +166,8 @@ public class GetFruitMiniGame : BaseMiniGame
     {
         Debug.Log("GetFruitMiniGame start");
         CurrentState = MiniGameState.Start;
+
+        _uiManager.HideInfoText(); // ui text 숨기기
         _isFlap = true;
         _droneController.EnableGravity(); // 중력
         _droneController.Flap(ref _isFlap);

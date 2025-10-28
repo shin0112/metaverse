@@ -44,6 +44,30 @@ public class UIManager : MonoBehaviour
         _getFruitUI?.SetActive(_currentState);
     }
 
+    public void ShowInfoText()
+    {
+        switch (_currentState)
+        {
+            case UIState.GetFruit:
+                _getFruitUI.ShowInfoText();
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void HideInfoText()
+    {
+        switch (_currentState)
+        {
+            case UIState.GetFruit:
+                _getFruitUI.HideInfoText();
+                break;
+            default:
+                break;
+        }
+    }
+
     public void OnClickStart()
     {
         ChangeState(UIState.GetFruit);
