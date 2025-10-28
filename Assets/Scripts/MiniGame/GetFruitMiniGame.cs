@@ -44,15 +44,7 @@ public class GetFruitMiniGame : BaseMiniGame
         _droneController.ClearDeathEvent();
         _droneController.OnDroneDeath += () =>
         {
-            CurrentState = MiniGameState.Stop;
-
-            // ui에 점수 update
-            ScoreManager.Instance.UpdateTotalScore(_score);
-            _score = 0;
-            ScoreManager.Instance.UpdateFruitScore(_score);
-            UIManager.Instance.UpdateScore();
-
-            _deathCooldown = 1f;
+            OnStop();
             Debug.Log("드론 파괴");
         };
 
@@ -103,6 +95,19 @@ public class GetFruitMiniGame : BaseMiniGame
         Debug.Log("GetFruit MiniGame 준비 완료");
     }
 
+    protected override void OnStop()
+    {
+        CurrentState = MiniGameState.Stop;
+
+        // ui에 점수 update
+        ScoreManager.Instance.UpdateTotalScore(_score);
+        _score = 0;
+        ScoreManager.Instance.UpdateFruitScore(_score);
+        UIManager.Instance.UpdateScore();
+
+        _deathCooldown = 1f;
+    }
+
     private IEnumerator PlayEnterSequence()
     {
         CurrentState = MiniGameState.Preparing;
@@ -136,6 +141,7 @@ public class GetFruitMiniGame : BaseMiniGame
         Debug.Log("준비 완료");
     }
 
+    // todo: 카메라 이동 로직 점검
     private IEnumerator CameraZoomAndShift()
     {
         float duration = 1f;

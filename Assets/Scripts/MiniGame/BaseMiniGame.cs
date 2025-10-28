@@ -72,5 +72,6 @@ public abstract class BaseMiniGame : MonoBehaviour
     protected abstract void OnReady();
     protected abstract void OnStart();
     protected abstract void OnPlaying();
+    protected abstract void OnStop();
     protected abstract void OnExit();
 }
