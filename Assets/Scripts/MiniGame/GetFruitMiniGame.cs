@@ -48,6 +48,7 @@ public class GetFruitMiniGame : BaseMiniGame
             Debug.Log("드론 파괴");
         };
 
+        _score = 0;
         OnReady();
     }
 
@@ -100,9 +101,7 @@ public class GetFruitMiniGame : BaseMiniGame
         CurrentState = MiniGameState.Stop;
 
         // ui에 점수 update
-        ScoreManager.Instance.UpdateTotalScore(_score);
-        _score = 0;
-        ScoreManager.Instance.UpdateFruitScore(_score);
+        ScoreManager.Instance.CommitRoundScore();
         UIManager.Instance.UpdateScore();
 
         _deathCooldown = 1f;
@@ -132,7 +131,6 @@ public class GetFruitMiniGame : BaseMiniGame
 
         // 드론 상태 초기화
         _droneController.ResetDronePhysics();
-
         _droneController.ResetState();
 
         // 카메라 줌인 & 오른쪽 이동

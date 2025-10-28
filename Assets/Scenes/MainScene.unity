@@ -713,7 +713,7 @@ MonoBehaviour:
   _camera: {fileID: 4708713044758797675, guid: 9b6dd081a6dd2ac4dbd37a4ff9a3547b, type: 3}
   _cameraTargetSize: 5
   _cameraShiftX: 2
-  _flapPower: 6
+  _flapPower: 5
 --- !u!4 &590789024 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7476470561697611165, guid: 37db94952b97d0449a3399a9ccf25c1b,
@@ -2239,7 +2239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19d3df7575bc452408518d7607fa6d9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TotalScore: {fileID: 1127189412}
+  TotalScore: {fileID: 1923319932}
 --- !u!1 &1923319930
 GameObject:
   m_ObjectHideFlags: 0

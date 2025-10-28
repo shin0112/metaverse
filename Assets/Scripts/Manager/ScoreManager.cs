@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -18,15 +18,35 @@ public class ScoreManager : MonoBehaviour
         _instance = this;
     }
 
+    private void Start()
+    {
+        LoadTotalScore();
+    }
+
     public void AddScore(int amount)
     {
         _fruitScore += amount;
-        Debug.Log($"���� ����: {_fruitScore}");
+        Debug.Log($"현재 점수: {_fruitScore}");
     }
 
-    public void GetScore()
+    public void LoadTotalScore()
     {
         _totalScore = PlayerPrefs.GetInt(TotalScoreKey, 0);
+    }
+
+    public void CommitRoundScore()
+    {
+        _totalScore += _fruitScore;
+        PlayerPrefs.SetInt(TotalScoreKey, _totalScore);
+
+        Debug.Log($"총 점수 업데이트: {_totalScore} (+{_fruitScore})");
+
+        ResetRoundScore(); // 이번 판 점수 리셋
+    }
+
+    public void ResetRoundScore()
+    {
+        _fruitScore = 0;
     }
 
     public void UpdateTotalScore(int score)
@@ -38,7 +58,6 @@ public class ScoreManager : MonoBehaviour
 
     public void UpdateFruitScore(int score)
     {
-        _fruitScore += score;
-        UpdateTotalScore(score);
+        _fruitScore = score;
     }
 }
