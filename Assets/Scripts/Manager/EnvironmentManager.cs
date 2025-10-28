@@ -44,6 +44,14 @@ public class EnvironmentManager : MonoBehaviour
         Debug.Log($"[EnvironmentManager] _getFruit: {_getFruit}, activeSelf={_getFruit.activeSelf}");
         SetEnvironment(_getFruit);
         Debug.Log($"[EnvironmentManager] after SetActive: activeSelf={_getFruit.activeSelf}");
+
+        var loop = FindObjectOfType<LoopGetFruitBg>(true);
+        if (loop != null && !loop.gameObject.activeSelf)
+        {
+            loop.gameObject.SetActive(true);
+            Debug.Log("[EnvironmentManager] LoopGetFruitBg È°¼ºÈ­µÊ");
+        }
+
         return _getFruit;
     }
 }

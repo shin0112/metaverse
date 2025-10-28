@@ -34,12 +34,11 @@ public class LoopGetFruitBg : MonoBehaviour
     {
         _mainCam = Camera.main;
         _screenLeft = _mainCam.transform.position.x - 15f;
-
-        SaveInitialPositions();
     }
 
     private void OnEnable()
     {
+        SaveInitialPositions();
         SetupObstacles();
     }
 

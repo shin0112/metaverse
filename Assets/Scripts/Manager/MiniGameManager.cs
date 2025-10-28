@@ -114,20 +114,4 @@ public class MiniGameManager : MonoBehaviour
     {
 
     }
-
-    public void RestartGame(BaseMiniGame miniGame)
-    {
-        LoopGetFruitBg loopScene = FindObjectOfType<LoopGetFruitBg>();
-        if (loopScene != null)
-        {
-            loopScene.ResetLoopScene();
-        }
-
-        if (miniGame is GetFruitMiniGame g)
-        {
-            g.ResetIsFirstEnter();
-        }
-
-        miniGame.Init();
-    }
 }

@@ -75,17 +75,25 @@ public class GetFruitMiniGame : BaseMiniGame
     {
         Debug.Log("GetFruit MiniGame 준비 중...");
 
+        // 게임 배경 초기화
+        LoopGetFruitBg loopScene = FindObjectOfType<LoopGetFruitBg>();
+        if (loopScene != null)
+        {
+            loopScene.ResetLoopScene();
+            Debug.Log("배경 초기화 완료");
+
+        }
+
+        // 드론 초기화
+        _droneController.ResetDronePhysics();
+        _droneController.ResetState();
+        _score = 0;
+        _isFlap = false;
+
         if (_isFirstEnter)
         {
             StartCoroutine(PlayEnterSequence());
             _isFirstEnter = false;
-        }
-        else
-        {
-            _droneController.ResetDronePhysics();
-            _droneController.ResetState();
-
-            Debug.Log("바로 Ready 완료");
         }
 
         CurrentState = MiniGameState.Ready;
@@ -128,11 +136,6 @@ public class GetFruitMiniGame : BaseMiniGame
         var playerPh = _player.GetComponent<PlayerHandler>();
         playerPh.Idle();
 
-        // 드론 상태 초기화
-        _droneController.ResetDronePhysics();
-        _droneController.ResetState();
-
-        // 카메라 줌인 & 오른쪽 이동
         yield return StartCoroutine(CameraZoomAndShift());
 
         Debug.Log("준비 완료");
@@ -158,27 +161,21 @@ public class GetFruitMiniGame : BaseMiniGame
 
     protected override void OnStart()
     {
-        Debug.Log("GetFruitMiniGame start");
+        Debug.Log("미니게임 Get Fruit Start");
         CurrentState = MiniGameState.Start;
+
+        _droneController.EnableGravity();
+        _droneController.Flap(ref _isFlap);
 
         _uiManager.HideInfoText(); // ui text 숨기기
         _isFlap = true;
-        _droneController.EnableGravity(); // 중력
-        _droneController.Flap(ref _isFlap);
     }
 
     protected override void OnPlaying()
     {
         if (CurrentState is MiniGameState.Stop)
         {
-            if (_deathCooldown <= 0)
-            {
-                if (CheckStartInput())
-                {
-                    _miniGameManager.RestartGame(this);
-                }
-            }
-            else
+            if (_deathCooldown > 0)
             {
                 _deathCooldown -= Time.deltaTime;
             }
