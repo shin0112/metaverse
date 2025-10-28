@@ -71,12 +71,6 @@ public class GetFruitMiniGame : BaseMiniGame
         _originalCamSize = _camera.orthographicSize;
     }
 
-    protected override void OnExit()
-    {
-        _droneController.ResetDronePhysics();
-        _droneController.ResetState();
-    }
-
     protected override void OnReady()
     {
         Debug.Log("GetFruit MiniGame 준비 중...");
@@ -207,5 +201,21 @@ public class GetFruitMiniGame : BaseMiniGame
         {
             _droneController.Flap(ref _isFlap);
         }
+    }
+
+    protected override void OnExit()
+    {
+        Debug.Log("게임 종료");
+
+        ResetIsFirstEnter();
+        _droneController.ResetDronePhysics();
+        _droneController.ResetState();
+    }
+
+    public void ResetIsFirstEnter()
+    {
+        Debug.Log("first ender 초기화");
+
+        _isFirstEnter = true;
     }
 }

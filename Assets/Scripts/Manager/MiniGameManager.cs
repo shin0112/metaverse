@@ -123,6 +123,11 @@ public class MiniGameManager : MonoBehaviour
             loopScene.ResetLoopScene();
         }
 
+        if (miniGame is GetFruitMiniGame g)
+        {
+            g.ResetIsFirstEnter();
+        }
+
         miniGame.Init();
     }
 }
