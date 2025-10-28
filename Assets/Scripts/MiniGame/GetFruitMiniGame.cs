@@ -110,7 +110,7 @@ public class GetFruitMiniGame : BaseMiniGame
         Debug.Log("플레이어 이동 금지");
         _playerController.enabled = false;
 
-        // 카메라 y 좌표 고정하기
+        // 카메라 y 좌표 고정하기 -> mode 변경하면서 진행함
 
         // 플레이어 좌표 0, 0으로 바꾸기
         _player.transform.position = Vector3.zero;
@@ -168,7 +168,7 @@ public class GetFruitMiniGame : BaseMiniGame
         {
             if (_deathCooldown <= 0)
             {
-                if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
+                if (CheckStartInput())
                 {
                     _miniGameManager.RestartGame(this);
                 }
@@ -180,7 +180,7 @@ public class GetFruitMiniGame : BaseMiniGame
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
+            if (CheckStartInput())
             {
                 _isFlap = true;
             }
