@@ -42,14 +42,14 @@ public abstract class BaseMiniGame : MonoBehaviour
         {
             OnReady();
         }
-
-        if (CurrentState is MiniGameState.Ready && CheckStartInput())
+        else if (CurrentState is MiniGameState.Ready && CheckStartInput())
         {
             StartGame();
         }
-
-        if (CurrentState is MiniGameState.Start)
+        else if (CurrentState is MiniGameState.Start)
+        {
             OnPlaying();
+        }
     }
 
     protected virtual void FixedUpdate()
