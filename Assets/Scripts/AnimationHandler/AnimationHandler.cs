@@ -6,4 +6,9 @@ public abstract class AnimationHandler : MonoBehaviour
 
     public abstract void Idle();
     public abstract void Move(Vector2 obj);
+
+    protected virtual void Update()
+    {
+
+    }
 }
